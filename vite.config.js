@@ -1,8 +1,7 @@
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import { resolve } from 'path';
-import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
 
 const projectRootDir = resolve(__dirname);
@@ -10,20 +9,16 @@ const projectRootDir = resolve(__dirname);
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'resources/js/app.ts',
+            input: ['resources/css/app.css', 'resources/js/app.ts'],
             ssr: 'resources/js/ssr.ts',
             refresh: true,
         }),
         svelte(),
+        tailwindcss(),
     ],
     resolve: {
         alias: {
             '@': resolve(projectRootDir, 'resources/js'),
-        },
-    },
-    css: {
-        postcss: {
-            plugins: [tailwindcss, autoprefixer],
         },
     },
 });
