@@ -4,8 +4,6 @@ import laravel from 'laravel-vite-plugin';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
-const projectRootDir = resolve(__dirname);
-
 export default defineConfig({
     plugins: [
         laravel({
@@ -18,7 +16,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': resolve(projectRootDir, 'resources/js'),
+            '@': resolve(__dirname, './resources/js'),
         },
     },
 });
