@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PlaceholderPattern from '@/components/PlaceholderPattern.svelte';
+    import PlaceholderPattern from '@/components/placeholderpatterni.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import { type BreadcrumbItem } from '@/types';
 
