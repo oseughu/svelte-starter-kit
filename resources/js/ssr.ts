@@ -11,7 +11,7 @@ createServer((page) =>
             const pages = import.meta.glob<{ default: LegacyComponentType }>('./pages/**/*.svelte', { eager: true });
             return pages[`./pages/${name}.svelte`].default as unknown as ResolvedComponent;
         },
-        setup({ el, App, props }) {
+        setup({ App, props }) {
             return render(App, { props });
         },
     }),

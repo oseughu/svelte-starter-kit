@@ -1,9 +1,8 @@
-// eslint.config.js
 import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
 import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import ts from 'typescript-eslint';
-// import svelteConfig from './svelte.config.js';
 
 export default ts.config(
     js.configs.recommended,
@@ -14,6 +13,8 @@ export default ts.config(
             globals: {
                 ...globals.browser,
                 ...globals.node,
+                route: 'readonly',
+                Laravel: 'readonly',
             },
         },
     },
@@ -23,7 +24,7 @@ export default ts.config(
         languageOptions: {
             parserOptions: {
                 projectService: true,
-                extraFileExtensions: ['.svelte'], // Add support for additional file extensions, such as .svelte
+                extraFileExtensions: ['.svelte', '.svelte.ts', '.svelte.js'], // Add support for additional file extensions, such as .svelte
                 parser: ts.parser,
                 // Specify a parser for each language, if needed:
                 // parser: {
@@ -42,8 +43,14 @@ export default ts.config(
     },
     {
         rules: {
-            // Override or add rule settings here, such as:
-            // 'svelte/rule-name': 'error'
+            '@typescript-eslint/no-explicit-any': 'off',
+            'svelte/infinite-reactive-loop': 'error',
+            'svelte/no-at-html-tags': 'error',
+            'svelte/no-target-blank': 'error',
         },
     },
+    {
+        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js', 'resources/js/components/ui/*'],
+    },
+    prettier,
 );

@@ -13,7 +13,7 @@
 <SidebarGroup class="px-2 py-0">
     <SidebarGroupLabel>Platform</SidebarGroupLabel>
     <SidebarMenu>
-        {#each items as item}
+        {#each items as item (item.title)}
             <SidebarMenuItem>
                 <Link href={item.href} class="block w-full">
                     <SidebarMenuButton isActive={item.href === $page.url}>

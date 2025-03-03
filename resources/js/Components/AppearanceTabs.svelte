@@ -28,7 +28,7 @@
 </script>
 
 <div class="inline-flex gap-1 rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800 {className}">
-    {#each tabs as { value, Icon, label }}
+    {#each tabs as { value, Icon, label } (value)}
         <button
             onclick={() => handleUpdateAppearance(value)}
             class="flex items-center rounded-md px-3.5 py-1.5 transition-colors

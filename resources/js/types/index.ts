@@ -1,10 +1,6 @@
 import '@inertiajs/svelte';
 import type { Config } from 'ziggy-js';
-import { route as routeFn } from 'ziggy-js';
 
-declare global {
-    const route: typeof routeFn;
-}
 
 export interface Auth {
     user: User;
