@@ -8,15 +8,15 @@
         children: Snippet;
     };
 
-    let { variant, class: className = '', children }: Props = $props();
+    let { variant, class: className, children }: Props = $props();
 </script>
 
 {#if variant === 'sidebar'}
     <SidebarInset class={className}>
-        {@render children()}
+        {@render children?.()}
     </SidebarInset>
 {:else}
     <main class="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col gap-4 rounded-xl {className}">
-        {@render children()}
+        {@render children?.()}
     </main>
 {/if}
