@@ -1,7 +1,7 @@
 <script lang="ts">
+    import PlaceholderPattern from '@/components/PlaceholderPattern.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import { type BreadcrumbItem } from '@/types';
-    import PlaceholderPattern from '../components/PlaceholderPattern.svelte';
 
     const breadcrumbs: BreadcrumbItem[] = [
         {
