@@ -1,5 +1,5 @@
 <script lang="ts">
-    // import Placeholderpatterni from '@/components/placeholderpatterni.svelte';
+    import PlaceholderPattern from '@/components/PlaceholderPattern.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import { type BreadcrumbItem } from '@/types';
 
@@ -16,20 +16,20 @@
 </svelte:head>
 
 <AppLayout {breadcrumbs}>
-    <!-- <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+    <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <div class="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                <Placeholderpatterni class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
             </div>
             <div class="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                <Placeholderpatterni class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
             </div>
             <div class="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                <Placeholderpatterni class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
             </div>
         </div>
         <div class="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-            <Placeholderpatterni class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
         </div>
-    </div> -->
+    </div>
 </AppLayout>
