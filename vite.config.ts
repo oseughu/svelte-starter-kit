@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
 import { defineConfig } from 'vite';
+import eslintPlugin from 'vite-plugin-eslint';
 
 export default defineConfig({
     plugins: [

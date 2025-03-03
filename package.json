@@ -57,5 +57,8 @@
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1"
+    },
+    "dependencies": {
+        "vite-plugin-eslint": "^1.8.1"
     }
 }
