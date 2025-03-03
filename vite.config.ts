@@ -1,7 +1,7 @@
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
-import { resolve } from 'path';
+import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -16,7 +16,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': resolve(__dirname, './resources/js'),
+            '@': path.resolve(__dirname, './resources/js'),
         },
     },
 });
