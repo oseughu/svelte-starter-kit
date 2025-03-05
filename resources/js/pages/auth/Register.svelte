@@ -27,7 +27,7 @@
 </svelte:head>
 
 <AuthBase title="Create an account" description="Enter your details below to create your account">
-    <form onsubmit={submit} class="flex flex-col gap-6">
+    <form on:submit|preventDefault={submit} class="flex flex-col gap-6">
         <div class="grid gap-6">
             <div class="grid gap-2">
                 <Label for="name">Name</Label>
