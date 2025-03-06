@@ -1,5 +1,10 @@
 <?php
 
+use App\Utils\PortFinder;
+
+$startPort = 13714;
+$ssrPort = PortFinder::find($startPort);
+
 return [
 
     /*
@@ -22,7 +27,7 @@ return [
     'ssr' => [
         'enabled' => true,
 
-        'url' => 'http://127.0.0.1:13714',
+        'url' => 'http://127.0.0.1:' . $ssrPort,
 
         'bundle' => base_path('bootstrap/ssr/ssr.js'),
     ],
