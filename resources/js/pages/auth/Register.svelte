@@ -15,7 +15,8 @@
         password_confirmation: '',
     });
 
-    const submit = () => {
+    const submit = (e: Event) => {
+        e.preventDefault();
         $form.post(route('register'), {
             onFinish: () => $form.reset('password', 'password_confirmation'),
         });
