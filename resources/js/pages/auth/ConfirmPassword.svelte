@@ -13,7 +13,6 @@
 
     const submit = (e: Event) => {
         e.preventDefault();
-
         $form.post(route('password.confirm'), {
             onFinish: () => {
                 $form.reset();

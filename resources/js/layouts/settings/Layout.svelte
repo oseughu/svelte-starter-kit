@@ -4,7 +4,7 @@
     import { Separator } from '@/components/ui/separator';
     import { cn } from '@/lib/utils';
     import { type NavItem } from '@/types';
-    import { Link } from '@inertiajs/svelte';
+    import { Link, page } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
 
     const sidebarNavItems: NavItem[] = [
@@ -22,7 +22,7 @@
         },
     ];
 
-    const currentPath = window.location.pathname;
+    const currentPath = $page.props.ziggy?.location ? new URL($page.props.ziggy.location).pathname : '';
 
     interface Props {
         children?: Snippet;

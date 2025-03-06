@@ -117,6 +117,7 @@
     },
     "include": [
         "resources/js/**/*.ts",
+        "resources/js/**/*.d.ts",
         "resources/js/**/*.js",
         "resources/js/**/*.svelte.js",
         "resources/js/**/*.svelte.ts",

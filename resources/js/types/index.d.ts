@@ -1,7 +1,6 @@
 import '@inertiajs/svelte';
 import type { Config } from 'ziggy-js';
 
-
 export interface Auth {
     user: User;
 }
