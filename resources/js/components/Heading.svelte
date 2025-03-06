@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { Separator } from '@/components/ui/separator';
-
     interface Props {
         title: string;
         description?: string;
@@ -15,5 +13,3 @@
         <p class="text-sm text-muted-foreground">{description}</p>
     {/if}
 </div>
-
-<Separator class="my-6" />
