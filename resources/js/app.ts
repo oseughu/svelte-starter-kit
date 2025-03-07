@@ -1,12 +1,7 @@
 import { createInertiaApp, type ResolvedComponent } from '@inertiajs/svelte';
 import { hydrate, mount } from 'svelte';
-import { route as routeFn } from 'ziggy-js';
 import '../css/app.css';
 import './bootstrap';
-
-declare global {
-    const route: typeof routeFn;
-}
 
 createInertiaApp({
     resolve: (name: string) => {
