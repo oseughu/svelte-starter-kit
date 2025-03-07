@@ -36,11 +36,10 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'connection' => env('DB_QUEUE_CONNECTION'),
-            'table' => env('DB_QUEUE_TABLE', 'jobs'),
-            'queue' => env('DB_QUEUE', 'default'),
-            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 90),
-            'after_commit' => false,
+            'table' => 'jobs',
+            'queue' => 'default',
+            'retry_after' => 90,
+            'connection' => 'sqlite_queue',
         ],
 
         'beanstalkd' => [
@@ -71,7 +70,6 @@ return [
             'block_for' => null,
             'after_commit' => false,
         ],
-
     ],
 
     /*
@@ -86,7 +84,7 @@ return [
     */
 
     'batching' => [
-        'database' => env('DB_CONNECTION', 'sqlite'),
+        'database' => 'sqlite_queue',
         'table' => 'job_batches',
     ],
 
@@ -105,8 +103,7 @@ return [
 
     'failed' => [
         'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
-        'database' => env('DB_CONNECTION', 'sqlite'),
+        'database' => 'sqlite_queue',
         'table' => 'failed_jobs',
     ],
-
 ];
