@@ -2,6 +2,9 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
+
 class PortFinder
 {
     /**
@@ -78,6 +81,63 @@ class PortFinder
 
         // Fallback to original port if none found
         return $this->startPort;
+    }
+
+    /**
+     * Write the port to the .env file
+     *
+     * @param int $port
+     * @param string $envVar
+     * @return bool True if successful, false otherwise
+     */
+    public function writeToEnv(int $port, string $envVar = 'INERTIA_SSR_PORT'): bool
+    {
+        $envFile = base_path('.env');
+
+        if (file_exists($envFile)) {
+            $envContents = file_get_contents($envFile);
+
+            // Check if variable already exists in .env
+            if (Str::contains($envContents, $envVar . '=')) {
+                // Replace existing value
+                $envContents = preg_replace(
+                    '/' . $envVar . '=(.*)/i',
+                    $envVar . '=' . $port,
+                    $envContents
+                );
+            } else {
+                // Add new value
+                $envContents .= "\n" . $envVar . "=" . $port;
+            }
+
+            // Write updated contents back to .env file
+            if (file_put_contents($envFile, $envContents) !== false) {
+                // Clear cached config to make sure it takes effect
+                if (function_exists('artisan')) {
+                    Artisan::call('config:clear');
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Find an available port and save it to the .env file
+     *
+     * @param int $startPort
+     * @param int $maxAttempts
+     * @param string $envVar
+     * @return int The found port
+     */
+    public static function findAndSave(int $startPort = 13714, int $maxAttempts = 100, string $envVar = 'INERTIA_SSR_PORT'): int
+    {
+        $finder = new self($startPort, $maxAttempts);
+        $port = $finder->findAvailablePort();
+        $finder->writeToEnv($port, $envVar);
+
+        return $port;
     }
 
     /**
