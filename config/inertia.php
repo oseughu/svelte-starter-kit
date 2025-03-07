@@ -1,10 +1,5 @@
 <?php
 
-use App\Utils\PortFinder;
-
-$startPort = 13714;
-$ssrPort = PortFinder::find($startPort);
-
 return [
 
     /*
@@ -27,7 +22,7 @@ return [
     'ssr' => [
         'enabled' => true,
 
-        'url' => 'http://127.0.0.1:' . $ssrPort,
+        'url' => 'http://127.0.0.1:' . env('INERTIA_SSR_PORT', 13714),
 
         'bundle' => base_path('bootstrap/ssr/ssr.js'),
     ],
