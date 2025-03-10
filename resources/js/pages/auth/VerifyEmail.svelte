@@ -30,7 +30,7 @@
     {/if}
 
     <form onsubmit={submit} class="space-y-6 text-center">
-        <Button disabled={$form.processing} variant="secondary">
+        <Button type="submit" disabled={$form.processing} variant="secondary">
             {#if $form.processing}
                 <LoaderCircle class="h-4 w-4 animate-spin" />
             {/if}
