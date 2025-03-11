@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <Button disabled={$form.processing}>Save Password</Button>
+                    <Button type="submit" disabled={$form.processing}>Save Password</Button>
 
                     {#if $form.recentlySuccessful}
                         <p class="text-sm text-neutral-600" transition:fade={{ duration: 150 }}>Saved.</p>
