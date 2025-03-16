@@ -12,6 +12,14 @@ This Svelte starter kit utilizes Svelte 5, TypeScript, Tailwind, and the [shadcn
 
 Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
 
+## Quick Start
+
+Run the following command to set up your Svelte starter kit. Replace `laravel-svelte-proj` with your desired project name.
+
+```bash
+laravel new laravel-svelte-proj --using=oseughu/svelte-starter-kit
+```
+
 ## Contributing
 
 Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
