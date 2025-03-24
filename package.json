@@ -8,7 +8,8 @@
         "dev": "bun run generate && vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix"
+        "lint": "eslint . --fix",
+        "shadcn:update": "bunx shadcn-svelte@next update --all"
     },
     "devDependencies": {
         "@eslint/js": "^9.23.0",
