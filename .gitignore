@@ -4,7 +4,6 @@
 /public/build
 /public/manifest.json
 /public/service-worker.js
-/public/service-worker.ts
 /public/hot
 /public/storage
 /public/vendor
