@@ -2,8 +2,11 @@
 /bootstrap/ssr
 /node_modules
 /public/build
+/public/manifest.json
+/public/service-worker.js
 /public/hot
 /public/storage
+/public/vendor
 /storage/*.key
 /storage/pail
 /vendor
@@ -22,3 +25,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+.DS_Store
