@@ -1,21 +1,21 @@
-# Larasvelte Starter Kit by Ose Ughu
+# Svelte Starter Kit by Ose Ughu
 
-This repository is a Laravel + Inertia + Svelte 5 + Progressive Web App (PWA) Starter Kit, designed to help you kickstart your web application development. It integrates modern tools like SQLite, Bun, TailwindCSS and ShadCN UI to provide a fully functional foundation for building reactive and scalable web applications.
+This repository is a Laravel + Inertia + Svelte 5 + Progressive Web App (PWA) Starter Kit, designed to help you kickstart your web application development. It integrates modern tools like SQLite, Bun, TailwindCSS and ShadCN UI to provide a fully functional foundation for building reactive and scalable web applications. This is a more opinionated starter kit compared to the main branch of the svelte-starter-kit repository, which is more of a boilerplate.
 
 ## Key Features
 
 - Laravel + Inertia: A robust backend combined with a reactive front end.
-- Svelte 5: Utilises the latest version of Svelte for seamless front-end interactivity.
+- Svelte 5: Utilizes the latest version of Svelte for seamless front-end interactivity.
 - Progressive Web App (PWA): Configured to work offline and feel like a native app.
 - Bun: Ultra-fast JavaScript runtime for bundling and running your front-end assets.
 - TailwindCSS: Rapid UI development with utility-first CSS.
-- ShadCN UI: Modern and accessible UI components out of the box.
+- [ShadCN](https://next.shadcn-svelte.com): Modern and accessible UI components out of the box.
 
-### Requirements
+### Requirements (Recommended)
 
 - PHP: 8.3 or later
 - Composer
-- [Bun](https://bun.sh) (recommended) or Node.js
+- [Bun](https://bun.sh)
 - SQLite (default) or another database engine of your choice
 
 ### Getting Started
@@ -23,11 +23,11 @@ This repository is a Laravel + Inertia + Svelte 5 + Progressive Web App (PWA) St
 Clone the Repository:
 
 ```bash
-git clone https://github.com/oseughu/svelte-starter-kit.git
-cd larasvelte && git checkout forge
+git clone -b forge https://github.com/oseughu/svelte-starter-kit.git
+cd svelte-starter-kit && rm -rf .git
 ```
 
-Install PHP dependencies (this also sets up the SQLite database and the .env file):
+Install PHP dependencies (this also sets up the SQLite database, app key and creates the .env file):
 
 ```bash
 composer install
@@ -36,7 +36,7 @@ composer install
 Run the following command to start up everything (Backend Server, Frontend Server, Queue, and Mailer):
 
 ```bash
-composer run dev
+composer dev
 ```
 
 ### Subdomain Routing Example
@@ -51,8 +51,8 @@ This starter kit is preconfigured as a Progressive Web App (PWA), enabling offli
 
 To customise the behaviour or appearance of the PWA:
 
-1. Modify the `public/service-worker-template.js` file to control how the service worker handles caching and offline functionality.
-2. Update the `public/manifest-template.json` file to define the app’s metadata (e.g., name, theme colour, icons).
+1. Modify the `public/scripts/service-worker-template.js` file to control how the service worker handles caching and offline functionality.
+2. Update the `public/scripts/manifest-template.json` file to define the app’s metadata (e.g., name, theme colour, icons).
 
 No other files need to be modified for PWA customization.
 
