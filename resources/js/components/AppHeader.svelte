@@ -5,13 +5,7 @@
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     import { Button } from '@/components/ui/button';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-    import {
-        Menubar as NavigationMenu,
-        MenubarItem as NavigationMenuItem,
-        MenubarTrigger as NavigationMenuLink,
-        MenubarMenu as NavigationMenuList,
-        navigationMenuTriggerStyle,
-    } from '@/components/ui/menubar';
+    import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger, navigationMenuTriggerStyle } from '@/components/ui/menubar';
     import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
     import UserMenuContent from '@/components/UserMenuContent.svelte';
@@ -107,34 +101,38 @@
             </div>
 
             <Link href={route('dashboard')} class="flex items-center gap-x-2">
-                <AppLogo class="hidden h-6 xl:block" />
+                <AppLogo />
             </Link>
 
             <!-- Desktop Menu -->
             <div class="hidden h-full lg:flex lg:flex-1">
-                <NavigationMenu class="ml-10 flex h-full items-stretch">
-                    <div class="flex h-full items-stretch space-x-2">
-                        <NavigationMenuList>
-                            {#each mainNavItems as item, index (index)}
-                                <NavigationMenuItem class="relative flex h-full items-center">
-                                    <a href={item.href}>
-                                        <NavigationMenuLink
-                                            class="{navigationMenuTriggerStyle()} {activeItemStyles(item.href)} h-9 cursor-pointer px-3"
-                                        >
-                                            {#if item.icon}
-                                                <item.icon class="mr-2 h-4 w-4" />
-                                            {/if}
-                                            {item.title}
-                                        </NavigationMenuLink>
-                                    </a>
-                                    {#if isCurrentRoute(item.href)}
-                                        <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
-                                    {/if}
-                                </NavigationMenuItem>
-                            {/each}
-                        </NavigationMenuList>
-                    </div></NavigationMenu
-                >
+                <Menubar class="ml-10 flex h-full items-center border-none bg-transparent">
+                    {#each mainNavItems as item, index (index)}
+                        <MenubarMenu>
+                            <MenubarTrigger
+                                value={item.href}
+                                class="{navigationMenuTriggerStyle()} {activeItemStyles(
+                                    item.href,
+                                )} relative flex h-full cursor-pointer items-center px-4 text-sm font-medium"
+                            >
+                                {#if item.icon}
+                                    <item.icon class="mr-2 h-4 w-4" />
+                                {/if}
+                                {item.title}
+                                {#if isCurrentRoute(item.href)}
+                                    <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
+                                {/if}
+                            </MenubarTrigger>
+                            <MenubarContent align="start">
+                                <MenubarItem>
+                                    <Link href={item.href}>
+                                        {item.title}
+                                    </Link>
+                                </MenubarItem>
+                            </MenubarContent>
+                        </MenubarMenu>
+                    {/each}
+                </Menubar>
             </div>
 
             <div class="ml-auto flex items-center space-x-2">
