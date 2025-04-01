@@ -3,9 +3,15 @@ name: tests
 on:
   push:
     branches:
+      - master
+      - main
+      - dev
       - forge
   pull_request:
     branches:
+      - master
+      - main
+      - dev
       - forge
 
 jobs:

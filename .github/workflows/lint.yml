@@ -3,9 +3,15 @@ name: linter
 on:
   push:
     branches:
+      - master
+      - main
+      - dev
       - forge
   pull_request:
     branches:
+      - master
+      - main
+      - dev
       - forge
 
 permissions:
