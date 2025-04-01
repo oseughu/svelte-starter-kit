@@ -13,9 +13,9 @@
     let { breadcrumbs = [], children }: Props = $props();
 </script>
 
-<AppShell class="flex-col">
+<AppShell variant="header">
     <AppHeader {breadcrumbs} />
-    <AppContent>
+    <AppContent variant="header">
         {@render children?.()}
     </AppContent>
 </AppShell>
