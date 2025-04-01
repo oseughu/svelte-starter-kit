@@ -11,9 +11,9 @@
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0.1",
-        "laravel/framework": "^12.3.0",
+        "laravel/framework": "^12.5.0",
         "laravel/sanctum": "^4.0.8",
-        "laravel/telescope": "^5.6",
+        "laravel/telescope": "^5.7",
         "laravel/tinker": "^2.10.1",
         "resend/resend-php": "^0.15.2",
         "tightenco/ziggy": "^2.5.2"
@@ -25,7 +25,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.7.0",
-        "pestphp/pest": "^3.7.4"
+        "pestphp/pest": "^3.8.0"
     },
     "autoload": {
         "psr-4": {
@@ -53,7 +53,7 @@
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
             "ncu -u",
-            "bun i && bun run build",
+            "bun i && bun run build:ssr",
             "@php artisan migrate:all --ansi"
         ],
         "post-root-package-install": [
