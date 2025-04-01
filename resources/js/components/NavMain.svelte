@@ -17,6 +17,9 @@
             <SidebarMenuItem>
                 <Link href={item.href} class="block w-full">
                     <SidebarMenuButton isActive={item.href === $page.url}>
+                        {#snippet tooltipContent()}
+                            {item.title}
+                        {/snippet}
                         {#if item.icon}
                             {@const Icon = item.icon}
                             <Icon class="h-4 w-4 shrink-0" />
