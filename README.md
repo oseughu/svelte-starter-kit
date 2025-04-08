@@ -23,7 +23,10 @@ This repository is a Laravel + Inertia + Svelte 5 + Progressive Web App (PWA) St
 Clone the Repository:
 
 ```bash
-git clone -b forge https://github.com/oseughu/svelte-starter-kit.git
+git clone -b forge https://github.com/oseughu/svelte-starter-kit.git # https
+# or
+git clone -b forge git@github.com:oseughu/svelte-starter-kit.git # ssh
+
 cd svelte-starter-kit && rm -rf .git
 ```
 
