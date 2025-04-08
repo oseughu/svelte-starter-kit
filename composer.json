@@ -12,7 +12,7 @@
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0.1",
         "laravel/framework": "^12.5.0",
-        "laravel/sanctum": "^4.0.8",
+        "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.7",
         "laravel/tinker": "^2.10.1",
         "resend/resend-php": "^0.15.2",

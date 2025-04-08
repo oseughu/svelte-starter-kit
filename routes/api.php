@@ -21,6 +21,6 @@ Route::get('/', function () {
     return response()->json(['message' => 'Hello API!']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api_user')->get('/user', function (Request $request) {
     return $request->user();
 });

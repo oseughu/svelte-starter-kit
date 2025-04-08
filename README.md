@@ -41,9 +41,7 @@ composer dev
 
 ### Subdomain Routing Example
 
-The codebase includes an example of subdomain routing configured in the `RouteServiceProvider`. The subdomain routing example is specifically for an admin panel and uses `routes/admin.php`.
-
-If subdomain routing is not required for your project, you can remove it by either: 1. Commenting out or deleting the configuration in the `RouteServiceProvider`. 2. Removing the `routes/admin.php` file.
+If subdomain routing is required for your project, you can add it by either: 1. Uncommenting the configuration in the `RouteServiceProvider`. 2. Adding a `routes/admin.php` file with the routes for the subdomain.
 
 ### PWA Customization
 
