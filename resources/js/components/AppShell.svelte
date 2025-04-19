@@ -1,25 +1,25 @@
 <script lang="ts">
-    import { SidebarProvider } from '@/components/ui/sidebar';
-    import type { Snippet } from 'svelte';
+    import { SidebarProvider } from '@/components/ui/sidebar'
+    import type { Snippet } from 'svelte'
 
     interface Props {
-        variant?: 'header' | 'sidebar';
-        class?: string;
-        children?: Snippet;
+        variant?: 'header' | 'sidebar'
+        class?: string
+        children?: Snippet
     }
 
-    let { variant = 'sidebar', class: className, children }: Props = $props();
+    let { variant = 'sidebar', class: className, children }: Props = $props()
 
-    let isOpen: boolean = $state(true);
+    let isOpen: boolean = $state(true)
 
     $effect(() => {
-        isOpen = localStorage.getItem('sidebar') !== 'false';
-    });
+        isOpen = localStorage.getItem('sidebar') !== 'false'
+    })
 
     const handleSidebarChange = (open: boolean) => {
-        isOpen = open;
-        localStorage.setItem('sidebar', String(open));
-    };
+        isOpen = open
+        localStorage.setItem('sidebar', String(open))
+    }
 </script>
 
 {#if variant === 'header'}

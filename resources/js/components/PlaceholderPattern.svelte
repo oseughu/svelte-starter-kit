@@ -1,10 +1,10 @@
 <script lang="ts">
     interface Props {
-        class?: string;
+        class?: string
     }
 
-    let { class: className }: Props = $props();
-    let patternId = $derived(`pattern-${Math.random().toString(36).substring(2, 9)}`);
+    let { class: className }: Props = $props()
+    let patternId = $derived(`pattern-${Math.random().toString(36).substring(2, 9)}`)
 </script>
 
 <svg class={className} fill="none">

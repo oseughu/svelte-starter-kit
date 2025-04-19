@@ -1,14 +1,14 @@
 <script lang="ts">
-    import AuthLayout from '@/layouts/auth/AuthSimpleLayout.svelte';
-    import type { Snippet } from 'svelte';
+    import AuthLayout from '@/layouts/auth/AuthSimpleLayout.svelte'
+    import type { Snippet } from 'svelte'
 
     interface Props {
-        title: string;
-        description: string;
-        children?: Snippet;
+        title: string
+        description: string
+        children?: Snippet
     }
 
-    let { title, description, children }: Props = $props();
+    let { title, description, children }: Props = $props()
 </script>
 
 <AuthLayout {title} {description}>

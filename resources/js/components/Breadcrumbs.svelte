@@ -1,17 +1,24 @@
 <script lang="ts">
-    import { Breadcrumb, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Item } from '@/components/ui/breadcrumb';
-    import { Link } from '@inertiajs/svelte';
+    import {
+        Breadcrumb,
+        BreadcrumbLink,
+        BreadcrumbList,
+        BreadcrumbPage,
+        BreadcrumbSeparator,
+        Item
+    } from '@/components/ui/breadcrumb'
+    import { Link } from '@inertiajs/svelte'
 
     interface BreadcrumbItem {
-        title: string;
-        href?: string;
+        title: string
+        href?: string
     }
 
     interface Props {
-        breadcrumbs: BreadcrumbItem[];
+        breadcrumbs: BreadcrumbItem[]
     }
 
-    let { breadcrumbs }: Props = $props();
+    let { breadcrumbs }: Props = $props()
 </script>
 
 <Breadcrumb>

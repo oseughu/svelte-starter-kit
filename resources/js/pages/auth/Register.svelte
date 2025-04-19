@@ -1,26 +1,26 @@
 <script lang="ts">
-    import InputError from '@/components/InputError.svelte';
-    import TextLink from '@/components/TextLink.svelte';
-    import { Button } from '@/components/ui/button';
-    import { Input } from '@/components/ui/input';
-    import { Label } from '@/components/ui/label';
-    import AuthBase from '@/layouts/AuthLayout.svelte';
-    import { useForm } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
+    import InputError from '@/components/InputError.svelte'
+    import TextLink from '@/components/TextLink.svelte'
+    import { Button } from '@/components/ui/button'
+    import { Input } from '@/components/ui/input'
+    import { Label } from '@/components/ui/label'
+    import AuthBase from '@/layouts/AuthLayout.svelte'
+    import { useForm } from '@inertiajs/svelte'
+    import { LoaderCircle } from 'lucide-svelte'
 
     const form = useForm({
         name: '',
         email: '',
         password: '',
-        password_confirmation: '',
-    });
+        password_confirmation: ''
+    })
 
     const submit = (e: Event) => {
-        e.preventDefault();
+        e.preventDefault()
         $form.post(route('register'), {
-            onFinish: () => $form.reset('password', 'password_confirmation'),
-        });
-    };
+            onFinish: () => $form.reset('password', 'password_confirmation')
+        })
+    }
 </script>
 
 <svelte:head>
@@ -32,13 +32,30 @@
         <div class="grid gap-6">
             <div class="grid gap-2">
                 <Label for="name">Name</Label>
-                <Input id="name" type="text" required autofocus tabindex={1} autocomplete="name" bind:value={$form.name} placeholder="Full name" />
+                <Input
+                    id="name"
+                    type="text"
+                    required
+                    autofocus
+                    tabindex={1}
+                    autocomplete="name"
+                    bind:value={$form.name}
+                    placeholder="Full name"
+                />
                 <InputError message={$form.errors.name} />
             </div>
 
             <div class="grid gap-2">
                 <Label for="email">Email address</Label>
-                <Input id="email" type="email" required tabindex={2} autocomplete="email" bind:value={$form.email} placeholder="email@example.com" />
+                <Input
+                    id="email"
+                    type="email"
+                    required
+                    tabindex={2}
+                    autocomplete="email"
+                    bind:value={$form.email}
+                    placeholder="email@example.com"
+                />
                 <InputError message={$form.errors.email} />
             </div>
 
@@ -80,7 +97,9 @@
 
         <div class="text-center text-sm text-muted-foreground">
             Already have an account?
-            <TextLink href={route('login')} class="underline underline-offset-4" tabindex={6}>Log in</TextLink>
+            <TextLink href={route('login')} class="underline underline-offset-4" tabindex={6}
+                >Log in</TextLink
+            >
         </div>
     </form>
 </AuthBase>

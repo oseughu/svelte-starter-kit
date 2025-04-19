@@ -1,34 +1,34 @@
 <script lang="ts">
-    import InputError from '@/components/InputError.svelte';
-    import { Button } from '@/components/ui/button';
-    import { Input } from '@/components/ui/input';
-    import { Label } from '@/components/ui/label';
-    import AuthLayout from '@/layouts/AuthLayout.svelte';
-    import { useForm } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
+    import InputError from '@/components/InputError.svelte'
+    import { Button } from '@/components/ui/button'
+    import { Input } from '@/components/ui/input'
+    import { Label } from '@/components/ui/label'
+    import AuthLayout from '@/layouts/AuthLayout.svelte'
+    import { useForm } from '@inertiajs/svelte'
+    import { LoaderCircle } from 'lucide-svelte'
 
     interface Props {
-        token: string;
-        email: string;
+        token: string
+        email: string
     }
 
-    let { token, email }: Props = $props();
+    let { token, email }: Props = $props()
 
     const form = useForm({
         token: token,
         email: email,
         password: '',
-        password_confirmation: '',
-    });
+        password_confirmation: ''
+    })
 
     const submit = (e: Event) => {
-        e.preventDefault();
+        e.preventDefault()
         $form.post(route('password.store'), {
             onFinish: () => {
-                $form.reset('password', 'password_confirmation');
-            },
-        });
-    };
+                $form.reset('password', 'password_confirmation')
+            }
+        })
+    }
 </script>
 
 <svelte:head>
@@ -40,7 +40,15 @@
         <div class="grid gap-6">
             <div class="grid gap-2">
                 <Label for="email">Email</Label>
-                <Input id="email" type="email" name="email" autocomplete="email" bind:value={$form.email} class="mt-1 block w-full" readonly />
+                <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    autocomplete="email"
+                    bind:value={$form.email}
+                    class="mt-1 block w-full"
+                    readonly
+                />
                 <InputError message={$form.errors.email} class="mt-2" />
             </div>
 

@@ -1,15 +1,20 @@
 <script lang="ts">
-    import UserInfo from '@/components/UserInfo.svelte';
-    import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
-    import type { User } from '@/types';
-    import { Link } from '@inertiajs/svelte';
-    import { LogOut, Settings } from 'lucide-svelte';
+    import UserInfo from '@/components/UserInfo.svelte'
+    import {
+        DropdownMenuGroup,
+        DropdownMenuItem,
+        DropdownMenuLabel,
+        DropdownMenuSeparator
+    } from '@/components/ui/dropdown-menu'
+    import type { User } from '@/types'
+    import { Link } from '@inertiajs/svelte'
+    import { LogOut, Settings } from 'lucide-svelte'
 
     interface Props {
-        user: User;
+        user: User
     }
 
-    let { user }: Props = $props();
+    let { user }: Props = $props()
 </script>
 
 <DropdownMenuLabel class="p-0 font-normal">

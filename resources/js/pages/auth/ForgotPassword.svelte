@@ -1,27 +1,27 @@
 <script lang="ts">
-    import InputError from '@/components/InputError.svelte';
-    import TextLink from '@/components/TextLink.svelte';
-    import { Button } from '@/components/ui/button';
-    import { Input } from '@/components/ui/input';
-    import { Label } from '@/components/ui/label';
-    import AuthLayout from '@/layouts/AuthLayout.svelte';
-    import { useForm } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
+    import InputError from '@/components/InputError.svelte'
+    import TextLink from '@/components/TextLink.svelte'
+    import { Button } from '@/components/ui/button'
+    import { Input } from '@/components/ui/input'
+    import { Label } from '@/components/ui/label'
+    import AuthLayout from '@/layouts/AuthLayout.svelte'
+    import { useForm } from '@inertiajs/svelte'
+    import { LoaderCircle } from 'lucide-svelte'
 
     interface Props {
-        status?: string;
+        status?: string
     }
 
     const form = useForm({
-        email: '',
-    });
+        email: ''
+    })
 
     const submit = (e: Event) => {
-        e.preventDefault();
-        $form.post(route('password.email'));
-    };
+        e.preventDefault()
+        $form.post(route('password.email'))
+    }
 
-    let { status }: Props = $props();
+    let { status }: Props = $props()
 </script>
 
 <svelte:head>
@@ -39,7 +39,15 @@
         <form onsubmit={submit}>
             <div class="grid gap-2">
                 <Label for="email">Email address</Label>
-                <Input id="email" type="email" name="email" autocomplete="off" bind:value={$form.email} autofocus placeholder="email@example.com" />
+                <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    autocomplete="off"
+                    bind:value={$form.email}
+                    autofocus
+                    placeholder="email@example.com"
+                />
                 <InputError message={$form.errors.email} />
             </div>
 

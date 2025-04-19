@@ -1,57 +1,81 @@
 <script lang="ts">
-    import AppLogo from '@/components/AppLogo.svelte';
-    import AppLogoIcon from '@/components/AppLogoIcon.svelte';
-    import Breadcrumbs from '@/components/Breadcrumbs.svelte';
-    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-    import { Button } from '@/components/ui/button';
-    import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-    import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger, navigationMenuTriggerStyle } from '@/components/ui/menubar';
-    import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-    import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-    import UserMenuContent from '@/components/UserMenuContent.svelte';
-    import { getInitials } from '@/hooks/useInitials';
-    import type { BreadcrumbItem } from '@/types';
-    import { Link, page } from '@inertiajs/svelte';
-    import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-svelte';
+    import AppLogo from '@/components/AppLogo.svelte'
+    import AppLogoIcon from '@/components/AppLogoIcon.svelte'
+    import Breadcrumbs from '@/components/Breadcrumbs.svelte'
+    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+    import { Button } from '@/components/ui/button'
+    import {
+        DropdownMenu,
+        DropdownMenuContent,
+        DropdownMenuTrigger
+    } from '@/components/ui/dropdown-menu'
+    import {
+        Menubar,
+        MenubarContent,
+        MenubarItem,
+        MenubarMenu,
+        MenubarTrigger,
+        navigationMenuTriggerStyle
+    } from '@/components/ui/menubar'
+    import {
+        Sheet,
+        SheetContent,
+        SheetHeader,
+        SheetTitle,
+        SheetTrigger
+    } from '@/components/ui/sheet'
+    import {
+        Tooltip,
+        TooltipContent,
+        TooltipProvider,
+        TooltipTrigger
+    } from '@/components/ui/tooltip'
+    import UserMenuContent from '@/components/UserMenuContent.svelte'
+    import { getInitials } from '@/hooks/useInitials'
+    import type { BreadcrumbItem } from '@/types'
+    import { Link, page } from '@inertiajs/svelte'
+    import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-svelte'
 
     interface NavItem {
-        title: string;
-        href: string;
-        icon?: any;
+        title: string
+        href: string
+        icon?: any
     }
 
     interface Props {
-        breadcrumbs?: BreadcrumbItem[];
+        breadcrumbs?: BreadcrumbItem[]
     }
 
-    let { breadcrumbs = [] }: Props = $props();
+    let { breadcrumbs = [] }: Props = $props()
 
-    let user = $derived($page.props.auth.user);
+    let user = $derived($page.props.auth.user)
 
-    const isCurrentRoute = $derived((url: string) => $page.url === url);
+    const isCurrentRoute = $derived((url: string) => $page.url === url)
 
-    const activeItemStyles = $derived((url: string) => (isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''));
+    const activeItemStyles = $derived((url: string) =>
+        isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''
+    )
 
     const mainNavItems: NavItem[] = [
         {
             title: 'Dashboard',
             href: '/dashboard',
-            icon: LayoutGrid,
-        },
-    ];
+            icon: LayoutGrid
+        }
+    ]
 
     const rightNavItems: NavItem[] = [
         {
             title: 'Repository',
             href: 'https://github.com/oseughu/svelte-starter-kit',
-            icon: Folder,
+            icon: Folder
         },
         {
             title: 'Documentation',
             href: 'https://laravel.com/docs/starter-kits',
-            icon: BookOpen,
-        },
-    ];
+            icon: BookOpen
+        }
+    ]
 </script>
 
 <div>
@@ -75,7 +99,7 @@
                                     <a
                                         href={item.href}
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {activeItemStyles(
-                                            item.href,
+                                            item.href
                                         )}"
                                     >
                                         {#if item.icon}
@@ -87,7 +111,10 @@
                             </nav>
                             <div class="flex flex-col space-y-4">
                                 {#each rightNavItems as item (item.title)}
-                                    <Link href={item.href} class="flex items-center space-x-2 text-sm font-medium">
+                                    <Link
+                                        href={item.href}
+                                        class="flex items-center space-x-2 text-sm font-medium"
+                                    >
                                         {#if item.icon}
                                             <item.icon class="h-5 w-5" />
                                         {/if}
@@ -112,7 +139,7 @@
                             <MenubarTrigger
                                 value={item.href}
                                 class="{navigationMenuTriggerStyle()} {activeItemStyles(
-                                    item.href,
+                                    item.href
                                 )} relative flex h-full cursor-pointer items-center px-4 text-sm font-medium"
                             >
                                 {#if item.icon}
@@ -120,7 +147,9 @@
                                 {/if}
                                 {item.title}
                                 {#if isCurrentRoute(item.href)}
-                                    <div class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
+                                    <div
+                                        class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
+                                    ></div>
                                 {/if}
                             </MenubarTrigger>
                             <MenubarContent align="start">
@@ -146,10 +175,20 @@
                             <TooltipProvider delayDuration={0}>
                                 <Tooltip>
                                     <TooltipTrigger>
-                                        <Button variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
-                                            <a href={item.href} target="_blank" rel="noopener noreferrer">
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            class="group h-9 w-9 cursor-pointer"
+                                        >
+                                            <a
+                                                href={item.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
                                                 <span class="sr-only">{item.title}</span>
-                                                <item.icon class="size-5 opacity-80 group-hover:opacity-100" />
+                                                <item.icon
+                                                    class="size-5 opacity-80 group-hover:opacity-100"
+                                                />
                                             </a>
                                         </Button>
                                     </TooltipTrigger>
@@ -173,7 +212,9 @@
                                 {#if user.avatar}
                                     <AvatarImage src={user.avatar} alt={user.name} />
                                 {:else}
-                                    <AvatarFallback class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white">
+                                    <AvatarFallback
+                                        class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
+                                    >
                                         {getInitials(user.name || '')}
                                     </AvatarFallback>
                                 {/if}
@@ -190,7 +231,9 @@
 
     {#if breadcrumbs.length > 1}
         <div class="flex w-full border-b border-sidebar-border/70">
-            <div class="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
+            <div
+                class="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl"
+            >
                 <Breadcrumbs {breadcrumbs} />
             </div>
         </div>

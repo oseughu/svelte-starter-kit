@@ -1,10 +1,10 @@
 <script lang="ts">
     interface Props {
-        title: string;
-        description?: string;
+        title: string
+        description?: string
     }
 
-    let { title, description }: Props = $props();
+    let { title, description }: Props = $props()
 </script>
 
 <div class="mb-8 space-y-0.5">

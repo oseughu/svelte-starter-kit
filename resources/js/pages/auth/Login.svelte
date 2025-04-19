@@ -1,40 +1,43 @@
 <script lang="ts">
-    import InputError from '@/components/InputError.svelte';
-    import TextLink from '@/components/TextLink.svelte';
-    import { Button } from '@/components/ui/button';
-    import { Checkbox } from '@/components/ui/checkbox';
-    import { Input } from '@/components/ui/input';
-    import { Label } from '@/components/ui/label';
-    import AuthBase from '@/layouts/AuthLayout.svelte';
-    import { useForm } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
+    import InputError from '@/components/InputError.svelte'
+    import TextLink from '@/components/TextLink.svelte'
+    import { Button } from '@/components/ui/button'
+    import { Checkbox } from '@/components/ui/checkbox'
+    import { Input } from '@/components/ui/input'
+    import { Label } from '@/components/ui/label'
+    import AuthBase from '@/layouts/AuthLayout.svelte'
+    import { useForm } from '@inertiajs/svelte'
+    import { LoaderCircle } from 'lucide-svelte'
 
     interface Props {
-        status?: string;
-        canResetPassword: boolean;
+        status?: string
+        canResetPassword: boolean
     }
 
     const form = useForm({
         email: '',
         password: '',
-        remember: false,
-    });
+        remember: false
+    })
 
-    let { status, canResetPassword }: Props = $props();
+    let { status, canResetPassword }: Props = $props()
 
     const submit = (e: Event) => {
-        e.preventDefault();
+        e.preventDefault()
         $form.post(route('login'), {
-            onFinish: () => $form.reset('password'),
-        });
-    };
+            onFinish: () => $form.reset('password')
+        })
+    }
 </script>
 
 <svelte:head>
     <title>Login</title>
 </svelte:head>
 
-<AuthBase title="Log in to your account" description="Enter your email and password below to log in">
+<AuthBase
+    title="Log in to your account"
+    description="Enter your email and password below to log in"
+>
     {#if status}
         <div class="mb-4 text-center text-sm font-medium text-green-600">
             {status}
@@ -62,7 +65,9 @@
                 <div class="flex items-center justify-between">
                     <Label for="password">Password</Label>
                     {#if canResetPassword}
-                        <TextLink href={route('password.request')} class="text-sm" tabindex={5}>Forgot password?</TextLink>
+                        <TextLink href={route('password.request')} class="text-sm" tabindex={5}
+                            >Forgot password?</TextLink
+                        >
                     {/if}
                 </div>
                 <Input

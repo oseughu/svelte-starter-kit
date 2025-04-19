@@ -1,15 +1,15 @@
 <script lang="ts">
-    import AppLogoIcon from '@/components/AppLogoIcon.svelte';
-    import { Link } from '@inertiajs/svelte';
-    import type { Snippet } from 'svelte';
+    import AppLogoIcon from '@/components/AppLogoIcon.svelte'
+    import { Link } from '@inertiajs/svelte'
+    import type { Snippet } from 'svelte'
 
     interface Props {
-        title: string;
-        description: string;
-        children?: Snippet;
+        title: string
+        description: string
+        children?: Snippet
     }
 
-    let { title, description, children }: Props = $props();
+    let { title, description, children }: Props = $props()
 </script>
 
 <div class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
@@ -18,7 +18,9 @@
             <div class="flex flex-col items-center gap-4">
                 <Link href={route('home')} class="flex flex-col items-center gap-2 font-medium">
                     <div class="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
-                        <AppLogoIcon class="size-9 fill-current text-[var(--foreground)] dark:text-white" />
+                        <AppLogoIcon
+                            class="size-9 fill-current text-[var(--foreground)] dark:text-white"
+                        />
                     </div>
                     <span class="sr-only">{title}</span>
                 </Link>

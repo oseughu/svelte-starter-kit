@@ -1,16 +1,16 @@
 <script lang="ts">
-    import AppLogoIcon from '@/components/AppLogoIcon.svelte';
-    import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-    import { Link } from '@inertiajs/svelte';
-    import type { Snippet } from 'svelte';
+    import AppLogoIcon from '@/components/AppLogoIcon.svelte'
+    import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+    import { Link } from '@inertiajs/svelte'
+    import type { Snippet } from 'svelte'
 
     interface Props {
-        title: string;
-        description: string;
-        children?: Snippet;
+        title: string
+        description: string
+        children?: Snippet
     }
 
-    let { title, description, children }: Props = $props();
+    let { title, description, children }: Props = $props()
 </script>
 
 <div class="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">

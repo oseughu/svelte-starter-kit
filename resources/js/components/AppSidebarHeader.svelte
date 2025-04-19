@@ -1,13 +1,13 @@
 <script lang="ts">
-    import Breadcrumbs from '@/components/Breadcrumbs.svelte';
-    import { SidebarTrigger } from '@/components/ui/sidebar';
-    import type { BreadcrumbItem } from '@/types';
+    import Breadcrumbs from '@/components/Breadcrumbs.svelte'
+    import { SidebarTrigger } from '@/components/ui/sidebar'
+    import type { BreadcrumbItem } from '@/types'
 
     interface Props {
-        breadcrumbs?: BreadcrumbItem[];
+        breadcrumbs?: BreadcrumbItem[]
     }
 
-    let { breadcrumbs = [] }: Props = $props();
+    let { breadcrumbs = [] }: Props = $props()
 </script>
 
 <header

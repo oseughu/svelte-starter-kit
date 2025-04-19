@@ -1,21 +1,23 @@
 <script lang="ts">
-    import AppLogoIcon from '@/components/AppLogoIcon.svelte';
-    import { Link, page } from '@inertiajs/svelte';
-    import type { Snippet } from 'svelte';
+    import AppLogoIcon from '@/components/AppLogoIcon.svelte'
+    import { Link, page } from '@inertiajs/svelte'
+    import type { Snippet } from 'svelte'
 
-    const name = $page.props.name;
-    const quote = $page.props.quote;
+    const name = $page.props.name
+    const quote = $page.props.quote
 
     interface Props {
-        title: string;
-        description: string;
-        children?: Snippet;
+        title: string
+        description: string
+        children?: Snippet
     }
 
-    let { title, description, children }: Props = $props();
+    let { title, description, children }: Props = $props()
 </script>
 
-<div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
+<div
+    class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0"
+>
     <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div class="absolute inset-0 bg-zinc-900"></div>
         <Link href={route('home')} class="relative z-20 flex items-center text-lg font-medium">

@@ -1,25 +1,27 @@
 <script lang="ts">
-    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-    import { useInitials } from '@/hooks/useInitials';
-    import type { User } from '@/types';
+    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+    import { useInitials } from '@/hooks/useInitials'
+    import type { User } from '@/types'
 
     interface Props {
-        user: User;
-        showEmail?: boolean;
+        user: User
+        showEmail?: boolean
     }
 
-    let { user, showEmail = false }: Props = $props();
+    let { user, showEmail = false }: Props = $props()
 
-    const { getInitials } = useInitials();
+    const { getInitials } = useInitials()
 
-    let showAvatar = $derived(user.avatar && user.avatar !== '');
+    let showAvatar = $derived(user.avatar && user.avatar !== '')
 </script>
 
 <Avatar class="h-8 w-8 overflow-hidden rounded-full">
     {#if showAvatar}
         <AvatarImage src={user.avatar} alt={user.name} />
     {:else}
-        <AvatarFallback class="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+        <AvatarFallback
+            class="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+        >
             {getInitials(user.name)}
         </AvatarFallback>
     {/if}

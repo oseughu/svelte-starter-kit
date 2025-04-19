@@ -1,18 +1,18 @@
 <script lang="ts">
-    import type { Method } from '@inertiajs/core';
-    import { Link } from '@inertiajs/svelte';
-    import type { Snippet } from 'svelte';
+    import type { Method } from '@inertiajs/core'
+    import { Link } from '@inertiajs/svelte'
+    import type { Snippet } from 'svelte'
 
     interface Props {
-        href: string;
-        tabindex?: number;
-        method?: Method;
-        as?: keyof HTMLElementTagNameMap;
-        class?: string;
-        children: Snippet;
+        href: string
+        tabindex?: number
+        method?: Method
+        as?: keyof HTMLElementTagNameMap
+        class?: string
+        children: Snippet
     }
 
-    let { href, tabindex, method, as, class: className, children }: Props = $props();
+    let { href, tabindex, method, as, class: className, children }: Props = $props()
 </script>
 
 <Link

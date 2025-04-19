@@ -1,10 +1,10 @@
 <script lang="ts">
     interface Props {
-        message?: string;
-        class?: string;
+        message?: string
+        class?: string
     }
 
-    let { message, class: className }: Props = $props();
+    let { message, class: className }: Props = $props()
 </script>
 
 {#if message}

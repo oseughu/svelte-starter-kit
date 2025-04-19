@@ -1,30 +1,30 @@
 <script lang="ts">
-    import type { Appearance } from '@/hooks/useAppearance.svelte';
-    import { useAppearance } from '@/hooks/useAppearance.svelte';
-    import { Monitor, Moon, Sun } from 'lucide-svelte';
+    import type { Appearance } from '@/hooks/useAppearance.svelte'
+    import { useAppearance } from '@/hooks/useAppearance.svelte'
+    import { Monitor, Moon, Sun } from 'lucide-svelte'
 
     interface Props {
-        class?: string;
+        class?: string
     }
 
-    const appearanceManager = useAppearance();
+    const appearanceManager = useAppearance()
     // Create a local reactive variable that tracks the hook's value
-    let currentAppearance = $state(appearanceManager.appearance);
+    let currentAppearance = $state(appearanceManager.appearance)
 
     // Update the local state when the appearance changes
     function handleUpdateAppearance(value: Appearance) {
-        appearanceManager.updateAppearance(value);
+        appearanceManager.updateAppearance(value)
         // Immediately update local state to ensure UI reflects the change
-        currentAppearance = value;
+        currentAppearance = value
     }
 
     const tabs = [
         { value: 'light', Icon: Sun, label: 'Light' },
         { value: 'dark', Icon: Moon, label: 'Dark' },
-        { value: 'system', Icon: Monitor, label: 'System' },
-    ] as const;
+        { value: 'system', Icon: Monitor, label: 'System' }
+    ] as const
 
-    let { class: className }: Props = $props();
+    let { class: className }: Props = $props()
 </script>
 
 <div class="inline-flex gap-1 rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800 {className}">

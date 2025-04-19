@@ -1,34 +1,36 @@
 <script lang="ts">
-    import Heading from '@/components/Heading.svelte';
-    import { Button } from '@/components/ui/button';
-    import { Separator } from '@/components/ui/separator';
-    import { cn } from '@/lib/utils';
-    import { type NavItem } from '@/types';
-    import { Link, page } from '@inertiajs/svelte';
-    import type { Snippet } from 'svelte';
+    import Heading from '@/components/Heading.svelte'
+    import { Button } from '@/components/ui/button'
+    import { Separator } from '@/components/ui/separator'
+    import { cn } from '@/lib/utils'
+    import { type NavItem } from '@/types'
+    import { Link, page } from '@inertiajs/svelte'
+    import type { Snippet } from 'svelte'
 
     const sidebarNavItems: NavItem[] = [
         {
             title: 'Profile',
-            href: '/settings/profile',
+            href: '/settings/profile'
         },
         {
             title: 'Password',
-            href: '/settings/password',
+            href: '/settings/password'
         },
         {
             title: 'Appearance',
-            href: '/settings/appearance',
-        },
-    ];
+            href: '/settings/appearance'
+        }
+    ]
 
-    const currentPath = $page.props.ziggy?.location ? new URL($page.props.ziggy.location).pathname : '';
+    const currentPath = $page.props.ziggy?.location
+        ? new URL($page.props.ziggy.location).pathname
+        : ''
 
     interface Props {
-        children?: Snippet;
+        children?: Snippet
     }
 
-    let { children }: Props = $props();
+    let { children }: Props = $props()
 </script>
 
 <div class="px-4 py-6">
@@ -42,7 +44,7 @@
                         <Button
                             variant="ghost"
                             class={cn('w-full justify-start', {
-                                'bg-muted': currentPath === item.href,
+                                'bg-muted': currentPath === item.href
                             })}
                         >
                             {item.title}
