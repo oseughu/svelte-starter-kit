@@ -18,8 +18,6 @@
             "DOM",
             "DOM.Iterable"
         ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
-        "jsx": "preserve" /* Specify what JSX code is generated. */,
-        "jsxImportSource": "vue" /* Specify module specifier used to import the JSX factory functions when using 'jsx: react-jsx*'. */,
         // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
         // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
         // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
