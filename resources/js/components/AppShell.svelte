@@ -1,5 +1,6 @@
 <script lang="ts">
     import { SidebarProvider } from '@/components/ui/sidebar';
+    import { page } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
 
     interface Props {
@@ -10,16 +11,7 @@
 
     let { variant = 'sidebar', class: className, children }: Props = $props();
 
-    let isOpen: boolean = $state(true);
-
-    $effect(() => {
-        isOpen = localStorage.getItem('sidebar') !== 'false';
-    });
-
-    const handleSidebarChange = (open: boolean) => {
-        isOpen = open;
-        localStorage.setItem('sidebar', String(open));
-    };
+    const isOpen = $derived($page.props.sidebarOpen as boolean);
 </script>
 
 {#if variant === 'header'}
@@ -27,7 +19,7 @@
         {@render children?.()}
     </div>
 {:else}
-    <SidebarProvider bind:open={isOpen} onOpenChange={handleSidebarChange}>
+    <SidebarProvider open={isOpen}>
         {@render children?.()}
     </SidebarProvider>
 {/if}
