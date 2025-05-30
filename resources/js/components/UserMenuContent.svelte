@@ -2,7 +2,7 @@
     import UserInfo from '@/components/UserInfo.svelte';
     import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
     import type { User } from '@/types';
-    import { Link } from '@inertiajs/svelte';
+    import { Link, router } from '@inertiajs/svelte';
     import { LogOut, Settings } from 'lucide-svelte';
 
     interface Props {
@@ -10,6 +10,10 @@
     }
 
     let { user }: Props = $props();
+
+    const handleLogout = () => {
+        router.flushAll();
+    };
 </script>
 
 <DropdownMenuLabel class="p-0 font-normal">
@@ -20,7 +24,7 @@
 <DropdownMenuSeparator />
 <DropdownMenuGroup>
     <DropdownMenuItem>
-        <Link class="block w-full" href={route('profile.edit')} as="button">
+        <Link class="block w-full" href={route('profile.edit')} prefetch as="button">
             <div class="flex items-center">
                 <Settings class="mr-2 h-4 w-4" />
                 <span>Settings</span>
@@ -30,7 +34,7 @@
 </DropdownMenuGroup>
 <DropdownMenuSeparator />
 <DropdownMenuItem>
-    <Link class="block w-full" method="post" href={route('logout')} as="button">
+    <Link class="block w-full" method="post" onclick={handleLogout} href={route('logout')} as="button">
         <div class="flex items-center">
             <LogOut class="mr-2 h-4 w-4" />
             <span>Log out</span>
