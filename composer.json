@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "oseughu/svelte-starter-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A laravel starter kit built with svelte 5, inertia 2, and shadcn-svelte",
     "keywords": [
         "laravel",
         "framework"
