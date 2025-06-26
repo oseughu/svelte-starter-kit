@@ -7,7 +7,8 @@
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix"
+        "lint": "eslint . --fix",
+        "shadcn:update": "npx shadcn-svelte update --all"
     },
     "devDependencies": {
         "@eslint/js": "^9.29.0",
