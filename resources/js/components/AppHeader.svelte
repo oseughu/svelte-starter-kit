@@ -5,13 +5,14 @@
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     import { Button } from '@/components/ui/button';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-    import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger, navigationMenuTriggerStyle } from '@/components/ui/menubar';
+    import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from '@/components/ui/menubar';
     import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
     import UserMenuContent from '@/components/UserMenuContent.svelte';
     import { getInitials } from '@/hooks/useInitials';
     import type { BreadcrumbItem } from '@/types';
     import { Link, page } from '@inertiajs/svelte';
+    import { cva } from 'class-variance-authority';
     import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-svelte';
 
     interface NavItem {
@@ -31,6 +32,10 @@
     const isCurrentRoute = $derived((url: string) => $page.url === url);
 
     const activeItemStyles = $derived((url: string) => (isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''));
+
+    const navigationMenuTriggerStyle = cva(
+        `group bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-active:bg-accent/50 data-[state=open]:bg-accent/50 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-hidden disabled:pointer-events-none disabled:opacity-50`,
+    );
 
     const mainNavItems: NavItem[] = [
         {

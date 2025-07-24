@@ -16,7 +16,7 @@
 
 <AppShell variant="sidebar">
     <AppSidebar />
-    <AppContent variant="sidebar">
+    <AppContent variant="sidebar" class="overflow-x-hidden">
         <AppSidebarHeader {breadcrumbs} />
         {@render children?.()}
     </AppContent>

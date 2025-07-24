@@ -18,7 +18,7 @@
 
     let { mustVerifyEmail, status }: Props = $props();
 
-    const breadcrumbs: BreadcrumbItem[] = [
+    const breadcrumbItems: BreadcrumbItem[] = [
         {
             title: 'Profile settings',
             href: '/settings/profile',
@@ -44,7 +44,7 @@
     <title>Profile Settings</title>
 </svelte:head>
 
-<AppLayout {breadcrumbs}>
+<AppLayout breadcrumbs={breadcrumbItems}>
     <SettingsLayout>
         <div class="flex flex-col space-y-6">
             <HeadingSmall title="Profile Information" description="Update your name and email address" />
