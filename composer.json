@@ -13,6 +13,7 @@
         "inertiajs/inertia-laravel": "^2.0.4",
         "laravel/framework": "^12.21.0",
         "laravel/tinker": "^2.10.1",
+        "laravel/workos": "^0.1.0",
         "tightenco/ziggy": "^2.5.3"
     },
     "require-dev": {
