@@ -10,8 +10,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "inertiajs/inertia-laravel": "^2.0.4",
-        "laravel/framework": "^12.21.0",
+        "inertiajs/inertia-laravel": "^2.0.5",
+        "laravel/framework": "^12.25.0",
         "laravel/tinker": "^2.10.1",
         "laravel/workos": "^0.1.6",
         "tightenco/ziggy": "^2.5.3"
@@ -23,7 +23,7 @@
         "laravel/sail": "^1.44.0",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.8.2",
-        "phpunit/phpunit": "^11.5.27"
+        "phpunit/phpunit": "^11.5.34"
     },
     "autoload": {
         "psr-4": {
