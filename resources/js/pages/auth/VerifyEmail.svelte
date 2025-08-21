@@ -2,20 +2,14 @@
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
-    import { useForm } from '@inertiajs/svelte';
+    import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
     interface Props {
         status?: string;
     }
+
     let { status }: Props = $props();
-
-    const form = useForm({});
-
-    const submit = (e: Event) => {
-        e.preventDefault();
-        $form.post(route('verification.send'));
-    };
 </script>
 
 <svelte:head>
@@ -29,14 +23,16 @@
         </div>
     {/if}
 
-    <form onsubmit={submit} class="space-y-6 text-center">
-        <Button type="submit" disabled={$form.processing} variant="secondary">
-            {#if $form.processing}
-                <LoaderCircle class="h-4 w-4 animate-spin" />
-            {/if}
-            Resend verification email
-        </Button>
+    <Form method="post" action={route('verification.send')} className="space-y-6 text-center">
+        {#snippet children({ processing }: { processing: boolean })}
+            <Button type="submit" disabled={processing} variant="secondary">
+                {#if processing}
+                    <LoaderCircle class="h-4 w-4 animate-spin" />
+                {/if}
+                Resend verification email
+            </Button>
 
-        <TextLink href={route('logout')} method="post" as="button" class="mx-auto block text-sm">Log out</TextLink>
-    </form>
+            <TextLink href={route('logout')} method="post" as="button" class="mx-auto block text-sm">Log out</TextLink>
+        {/snippet}
+    </Form>
 </AuthLayout>
