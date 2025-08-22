@@ -49,7 +49,7 @@
                 })}
                     <div class="grid gap-2">
                         <Label for="name">Name</Label>
-                        <Input name="name" class="mt-1 block w-full" required autocomplete="name" placeholder="Full name" />
+                        <Input name="name" class="mt-1 block w-full" defaultValue={user.name} required autocomplete="name" placeholder="Full name" />
                         <InputError class="mt-2" message={errors.name} />
                     </div>
 
@@ -59,6 +59,7 @@
                             id="email"
                             name="email"
                             class="mt-1 block w-full"
+                            defaultValue={user.email}
                             required
                             autocomplete="username"
                             placeholder="Email address"

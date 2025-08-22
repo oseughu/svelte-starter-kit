@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AppLayout from '@/layouts/app/AppHeaderLayout.svelte';
+    import AppLayout from '@/layouts/app/AppSidebarLayout.svelte';
     import type { BreadcrumbItemType } from '@/types';
     import type { Snippet } from 'svelte';
 
