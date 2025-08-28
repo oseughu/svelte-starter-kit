@@ -20,13 +20,13 @@ Welcome to the **Laravel + Svelte Starter Kit**! This project is your launchpad 
 Ready to blast off? Spin up a new project in seconds:
 
 ```bash
-laravel new larasvelte --using=oseughu/svelte-starter-kit
+composer create-project oseughu/svelte-starter-kit larasvelte
 ```
 
 Want to try the **WorkOS integration branch**? Use:
 
 ```bash
-laravel new larasvelte --using=oseughu/svelte-starter-kit:dev-workos
+composer create-project oseughu/svelte-starter-kit:dev-workos larasvelte
 ```
 
 Just replace `larasvelte` with your dream project name!
