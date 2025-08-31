@@ -29,6 +29,12 @@ Want to try the **WorkOS integration branch**? Use:
 composer create-project oseughu/svelte-starter-kit:dev-workos larasvelte
 ```
 
+Want to use **Laravel Wayfinder** instead of **Ziggy** for defining routes and actions on your frontend? Use:
+
+```bash
+composer create-project oseughu/svelte-starter-kit:dev-wayfinder larasvelte
+```
+
 Just replace `larasvelte` with your dream project name!
 
 ---
