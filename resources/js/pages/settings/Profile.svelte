@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
     import DeleteUser from '@/components/DeleteUser.svelte';
     import HeadingSmall from '@/components/HeadingSmall.svelte';
     import InputError from '@/components/InputError.svelte';
@@ -7,6 +8,8 @@
     import { Label } from '@/components/ui/label';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
+    import { edit } from '@/routes/profile';
+    import { send } from '@/routes/verification';
     import { type BreadcrumbItem, type User } from '@/types';
     import { Form, Link, page } from '@inertiajs/svelte';
     import { fade } from 'svelte/transition';
@@ -21,7 +24,7 @@
     const breadcrumbItems: BreadcrumbItem[] = [
         {
             title: 'Profile settings',
-            href: '/settings/profile',
+            href: edit().url,
         },
     ];
 
@@ -37,7 +40,7 @@
         <div class="flex flex-col space-y-6">
             <HeadingSmall title="Profile Information" description="Update your name and email address" />
 
-            <Form method="patch" action={route('profile.update')} class="space-y-6">
+            <Form {...ProfileController.update.form()} options={{ preserveScroll: true }} class="space-y-6">
                 {#snippet children({
                     errors,
                     processing,
@@ -72,7 +75,7 @@
                             <p class="-mt-4 text-sm text-muted-foreground">
                                 Your email address is unverified.
                                 <Link
-                                    href={route('verification.send')}
+                                    href={send()}
                                     method="post"
                                     as="button"
                                     class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:!decoration-current dark:decoration-neutral-500"

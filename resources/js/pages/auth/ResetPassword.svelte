@@ -1,4 +1,5 @@
 <script lang="ts">
+    import NewPasswordController from '@/actions/App/Http/Controllers/Auth/NewPasswordController';
     import InputError from '@/components/InputError.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
@@ -21,8 +22,7 @@
 
 <AuthLayout title="Reset password" description="Please enter your new password below">
     <Form
-        method="post"
-        action={route('password.store')}
+        {...NewPasswordController.store.form()}
         transform={(data) => ({ ...data, token, email })}
         resetOnSuccess={['password', 'password_confirmation']}
     >

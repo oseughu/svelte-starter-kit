@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { Method } from '@inertiajs/core';
+    import { LinkComponentBaseProps, Method } from '@inertiajs/core';
     import { Link } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
 
     interface Props {
-        href: string;
+        href: LinkComponentBaseProps['href'];
         tabindex?: number;
         method?: Method;
         as?: keyof HTMLElementTagNameMap;
@@ -22,5 +22,5 @@
     {as}
     class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:!decoration-current dark:decoration-neutral-500 {className}"
 >
-    {@render children()}
+    {@render children?.()}
 </Link>

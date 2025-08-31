@@ -1,7 +1,9 @@
 <script lang="ts">
+    import EmailVerificationNotificationController from '@/actions/App/Http/Controllers/Auth/EmailVerificationNotificationController';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import { logout } from '@/routes';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -23,7 +25,7 @@
         </div>
     {/if}
 
-    <Form method="post" action={route('verification.send')} className="space-y-6 text-center">
+    <Form {...EmailVerificationNotificationController.store.form()} className="space-y-6 text-center">
         {#snippet children({ processing }: { processing: boolean })}
             <Button type="submit" disabled={processing} variant="secondary">
                 {#if processing}
@@ -32,7 +34,7 @@
                 Resend verification email
             </Button>
 
-            <TextLink href={route('logout')} method="post" as="button" class="mx-auto block text-sm">Log out</TextLink>
+            <TextLink href={logout()} method="post" as="button" class="mx-auto block text-sm">Log out</TextLink>
         {/snippet}
     </Form>
 </AuthLayout>
