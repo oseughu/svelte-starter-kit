@@ -29,3 +29,4 @@ yarn-error.log
 /.vscode
 /.zed
 .DS_Store
+/.claude
