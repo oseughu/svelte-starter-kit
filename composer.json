@@ -11,18 +11,18 @@
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0.6",
-        "laravel/framework": "^12.26.4",
+        "laravel/framework": "^12.30.1",
         "laravel/tinker": "^2.10.1",
-        "laravel/wayfinder": "^0.1.10"
+        "laravel/wayfinder": "^0.1.12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
         "laravel/pail": "^1.2.3",
-        "laravel/pint": "^1.24.0",
+        "laravel/pint": "^1.25.1",
         "laravel/sail": "^1.45.0",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.8.2",
-        "phpunit/phpunit": "^11.5.35"
+        "phpunit/phpunit": "^11.5.39"
     },
     "autoload": {
         "psr-4": {
