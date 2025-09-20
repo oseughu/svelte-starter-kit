@@ -78,7 +78,7 @@
                         <div class="flex h-full flex-1 flex-col justify-between space-y-4 py-6">
                             <nav class="-mx-3 space-y-1">
                                 {#each mainNavItems as item (item.title)}
-                                    <a
+                                    <Link
                                         href={item.href}
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {activeItemStyles(
                                             item.href,
@@ -88,7 +88,7 @@
                                             <item.icon class="h-5 w-5" />
                                         {/if}
                                         {item.title}
-                                    </a>
+                                    </Link>
                                 {/each}
                             </nav>
                             <div class="flex flex-col space-y-4">
@@ -153,10 +153,10 @@
                                 <Tooltip>
                                     <TooltipTrigger>
                                         <Button variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
-                                            <a href={item.href} target="_blank" rel="noopener noreferrer">
+                                            <Link href={item.href} target="_blank" rel="noopener noreferrer">
                                                 <span class="sr-only">{item.title}</span>
                                                 <item.icon class="size-5 opacity-80 group-hover:opacity-100" />
-                                            </a>
+                                            </Link>
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
