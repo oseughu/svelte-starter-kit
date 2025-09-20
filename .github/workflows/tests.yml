@@ -3,12 +3,14 @@ name: tests
 on:
   push:
     branches:
-      - develop
       - main
+      - workos
+      - wayfinder
   pull_request:
     branches:
-      - develop
       - main
+      - workos
+      - wayfinder
 
 jobs:
   ci:
