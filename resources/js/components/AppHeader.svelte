@@ -10,6 +10,7 @@
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
     import UserMenuContent from '@/components/UserMenuContent.svelte';
     import { getInitials } from '@/hooks/useInitials';
+    import { dashboard } from '@/routes';
     import type { BreadcrumbItem } from '@/types';
     import { Link, page } from '@inertiajs/svelte';
     import { cva } from 'class-variance-authority';
@@ -34,7 +35,7 @@
     const activeItemStyles = $derived((url: string) => (isCurrentRoute(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''));
 
     const navigationMenuTriggerStyle = cva(
-        `group bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-active:bg-accent/50 data-[state=open]:bg-accent/50 inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-hidden disabled:pointer-events-none disabled:opacity-50`,
+        `group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50`,
     );
 
     const mainNavItems: NavItem[] = [
@@ -77,7 +78,7 @@
                         <div class="flex h-full flex-1 flex-col justify-between space-y-4 py-6">
                             <nav class="-mx-3 space-y-1">
                                 {#each mainNavItems as item (item.title)}
-                                    <a
+                                    <Link
                                         href={item.href}
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {activeItemStyles(
                                             item.href,
@@ -87,7 +88,7 @@
                                             <item.icon class="h-5 w-5" />
                                         {/if}
                                         {item.title}
-                                    </a>
+                                    </Link>
                                 {/each}
                             </nav>
                             <div class="flex flex-col space-y-4">
@@ -105,7 +106,7 @@
                 </Sheet>
             </div>
 
-            <Link href={route('dashboard')} class="flex items-center gap-x-2">
+            <Link href={dashboard()} class="flex items-center gap-x-2">
                 <AppLogo />
             </Link>
 
@@ -152,10 +153,10 @@
                                 <Tooltip>
                                     <TooltipTrigger>
                                         <Button variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
-                                            <a href={item.href} target="_blank" rel="noopener noreferrer">
+                                            <Link href={item.href} target="_blank" rel="noopener noreferrer">
                                                 <span class="sr-only">{item.title}</span>
                                                 <item.icon class="size-5 opacity-80 group-hover:opacity-100" />
-                                            </a>
+                                            </Link>
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
