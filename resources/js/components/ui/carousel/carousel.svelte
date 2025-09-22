@@ -39,27 +39,21 @@
 	function scrollPrev() {
 		carouselState.api?.scrollPrev();
 	}
+
 	function scrollNext() {
 		carouselState.api?.scrollNext();
 	}
+
 	function scrollTo(index: number, jump?: boolean) {
 		carouselState.api?.scrollTo(index, jump);
 	}
 
-	function onSelect(api: CarouselAPI) {
-		if (!api) return;
-		carouselState.canScrollPrev = api.canScrollPrev();
-		carouselState.canScrollNext = api.canScrollNext();
-		carouselState.selectedIndex = api.selectedScrollSnap();
+	function onSelect() {
+		if (!carouselState.api) return;
+		carouselState.selectedIndex = carouselState.api.selectedScrollSnap();
+		carouselState.canScrollNext = carouselState.api.canScrollNext();
+		carouselState.canScrollPrev = carouselState.api.canScrollPrev();
 	}
-
-	$effect(() => {
-		if (carouselState.api) {
-			onSelect(carouselState.api);
-			carouselState.api.on("select", onSelect);
-			carouselState.api.on("reInit", onSelect);
-		}
-	});
 
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === "ArrowLeft") {
@@ -71,14 +65,13 @@
 		}
 	}
 
-	$effect(() => {
-		setApi(carouselState.api);
-	});
-
 	function onInit(event: CustomEvent<CarouselAPI>) {
 		carouselState.api = event.detail;
+		setApi(carouselState.api);
 
 		carouselState.scrollSnaps = carouselState.api.scrollSnapList();
+		carouselState.api.on("select", onSelect);
+		onSelect();
 	}
 
 	$effect(() => {
