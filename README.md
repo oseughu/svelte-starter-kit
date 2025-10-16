@@ -20,19 +20,19 @@ Welcome to the **Laravel + Svelte Starter Kit**! This project is your launchpad 
 Ready to blast off? Spin up a new project in seconds:
 
 ```bash
-composer create-project oseughu/svelte-starter-kit larasvelte
+laravel new larasvelte --using=oseughu/svelte-starter-kit
 ```
 
 Want to try the **WorkOS integration branch**? Use:
 
 ```bash
-composer create-project oseughu/svelte-starter-kit:dev-workos larasvelte
+laravel new larasvelte --using=oseughu/svelte-starter-kit:dev-workos
 ```
 
 Want to use **Laravel Wayfinder** instead of **Ziggy** for defining routes and actions on your frontend? Use:
 
 ```bash
-composer create-project oseughu/svelte-starter-kit:dev-wayfinder larasvelte
+laravel new larasvelte --using=oseughu/svelte-starter-kit:dev-wayfinder
 ```
 
 Just replace `larasvelte` with your dream project name!
