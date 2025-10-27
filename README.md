@@ -17,7 +17,7 @@ Welcome to the **Laravel + Svelte Starter Kit**! This project is your launchpad 
 
 ## ⚡ Quick Start
 
-First, ensure you have the [Laravel Installer](https://laravel.com/docs/installation#installing-laravel) and [Composer](https://getcomposer.org/) set up on your machine.
+First, ensure you have [PHP, Composer and the Laravel Installer](https://php.new) set up on your machine.
 
 Ready to blast off? Spin up a new project in seconds:
 
