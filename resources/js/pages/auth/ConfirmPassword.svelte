@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ConfirmablePasswordController from '@/actions/Laravel/Fortify/Http/Controllers/ConfirmablePasswordController';
     import InputError from '@/components/InputError.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
@@ -13,7 +14,7 @@
 </svelte:head>
 
 <AuthLayout title="Confirm your password" description="This is a secure area of the application. Please confirm your password before continuing.">
-    <Form method="post" action={route('password.confirm')} resetOnSuccess>
+    <Form {...ConfirmablePasswordController.store.form()} resetOnSuccess={['password']}>
         {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
             <div class="space-y-6">
                 <div class="grid gap-2">

@@ -1,10 +1,12 @@
 <script lang="ts">
+    import PasswordResetLinkController from '@/actions/Laravel/Fortify/Http/Controllers/PasswordResetLinkController';
     import InputError from '@/components/InputError.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import { login } from '@/routes';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -27,7 +29,7 @@
     {/if}
 
     <div class="space-y-6">
-        <Form method="post" action={route('password.email')}>
+        <Form {...PasswordResetLinkController.store.form()}>
             {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
@@ -48,7 +50,7 @@
 
         <div class="space-x-1 text-center text-sm text-muted-foreground">
             <span>Or, return to</span>
-            <TextLink href={route('login')}>log in</TextLink>
+            <TextLink href={login()}>log in</TextLink>
         </div>
     </div>
 </AuthLayout>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController';
     import HeadingSmall from '@/components/HeadingSmall.svelte';
     import InputError from '@/components/InputError.svelte';
     import { Button } from '@/components/ui/button';
@@ -6,14 +7,15 @@
     import { Label } from '@/components/ui/label';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
+    import { edit } from '@/routes/settings/password';
     import { type BreadcrumbItem } from '@/types';
     import { Form } from '@inertiajs/svelte';
     import { fade } from 'svelte/transition';
 
     const breadcrumbItems: BreadcrumbItem[] = [
         {
-            title: 'Password settings',
-            href: '/settings/password',
+            title: 'Password Settings',
+            href: edit().url,
         },
     ];
 
@@ -31,8 +33,7 @@
             <HeadingSmall title="Update Password" description="Ensure your account is using a long, random password to stay secure" />
 
             <Form
-                method="put"
-                action={route('password.update')}
+                {...PasswordController.update.form()}
                 options={{ preserveScroll: true }}
                 onError={(errors) => {
                     if (errors.password) {
@@ -67,8 +68,7 @@
                             placeholder="Current password"
                         />
 
-                            <InputError message={errors.current_password} />
-
+                        <InputError message={errors.current_password} />
                     </div>
 
                     <div class="grid gap-2">

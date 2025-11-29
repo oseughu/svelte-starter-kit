@@ -3,6 +3,7 @@
     import NavMain from '@/components/NavMain.svelte';
     import NavUser from '@/components/NavUser.svelte';
     import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+    import { dashboard } from '@/routes';
     import { type NavItem } from '@/types';
     import { Link } from '@inertiajs/svelte';
     import { BookOpen, Folder, LayoutGrid } from 'lucide-svelte';
@@ -35,7 +36,7 @@
         <SidebarMenu>
             <SidebarMenuItem>
                 <SidebarMenuButton size="lg">
-                    <Link href={route('dashboard')}>
+                    <Link href={dashboard()}>
                         <AppLogo />
                     </Link>
                 </SidebarMenuButton>

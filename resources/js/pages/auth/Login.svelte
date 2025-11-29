@@ -1,4 +1,5 @@
 <script lang="ts">
+    import AuthenticatedSessionController from '@/actions/Laravel/Fortify/Http/Controllers/AuthenticatedSessionController';
     import InputError from '@/components/InputError.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
@@ -6,6 +7,8 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthBase from '@/layouts/AuthLayout.svelte';
+    import { register } from '@/routes';
+    import { request } from '@/routes/password';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -28,7 +31,7 @@
         </div>
     {/if}
 
-    <Form method="post" action={route('login')} resetOnSuccess={['password']} class="flex flex-col gap-6">
+    <Form {...AuthenticatedSessionController.store.form()} resetOnSuccess={['password']} className="flex flex-col gap-6">
         {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
             <div class="grid gap-6">
                 <div class="grid gap-2">
@@ -50,7 +53,7 @@
                     <div class="flex items-center justify-between">
                         <Label for="password">Password</Label>
                         {#if canResetPassword}
-                            <TextLink href={route('password.request')} class="text-sm" tabindex={5}>Forgot password?</TextLink>
+                            <TextLink href={request().url} class="text-sm" tabindex={5}>Forgot password?</TextLink>
                         {/if}
                     </div>
                     <Input
@@ -82,7 +85,7 @@
 
             <div class="text-center text-sm text-muted-foreground">
                 Don't have an account?
-                <TextLink href={route('register')} tabindex={5}>Sign up</TextLink>
+                <TextLink href={register()} tabindex={5}>Sign up</TextLink>
             </div>
         {/snippet}
     </Form>

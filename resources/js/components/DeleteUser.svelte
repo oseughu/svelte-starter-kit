@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
     import HeadingSmall from '@/components/HeadingSmall.svelte';
     import InputError from '@/components/InputError.svelte';
     import { Button } from '@/components/ui/button';
@@ -32,15 +33,13 @@
             </DialogTrigger>
             <DialogContent>
                 <Form
-                    method="delete"
-                    action={route('profile.destroy')}
-                    class="space-y-6"
-                    resetOnSuccess
-                    onError={(errors) => {
-                        if (errors.password) {
-                            passwordInput?.focus();
-                        }
+                    {...ProfileController.destroy.form()}
+                    options={{
+                        preserveScroll: true,
                     }}
+                    onError={() => passwordInput?.focus()}
+                    resetOnSuccess
+                    class="space-y-6"
                 >
                     {#snippet children({
                         errors,

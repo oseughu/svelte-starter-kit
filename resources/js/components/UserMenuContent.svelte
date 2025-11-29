@@ -1,6 +1,8 @@
 <script lang="ts">
     import UserInfo from '@/components/UserInfo.svelte';
     import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+    import { logout } from '@/routes';
+    import { edit } from '@/routes/profile';
     import type { User } from '@/types';
     import { Link, router } from '@inertiajs/svelte';
     import { LogOut, Settings } from 'lucide-svelte';
@@ -24,7 +26,7 @@
 <DropdownMenuSeparator />
 <DropdownMenuGroup>
     <DropdownMenuItem>
-        <Link class="block w-full" href={route('profile.edit')} prefetch as="button">
+        <Link class="block w-full" href={edit()} prefetch as="button">
             <div class="flex items-center">
                 <Settings class="mr-2 h-4 w-4" />
                 <span>Settings</span>
@@ -34,7 +36,7 @@
 </DropdownMenuGroup>
 <DropdownMenuSeparator />
 <DropdownMenuItem>
-    <Link class="block w-full" method="post" onclick={handleLogout} href={route('logout')} as="button">
+    <Link class="block w-full" method="post" onclick={handleLogout} href={logout()} as="button" data-test="logout-button">
         <div class="flex items-center">
             <LogOut class="mr-2 h-4 w-4" />
             <span>Log out</span>

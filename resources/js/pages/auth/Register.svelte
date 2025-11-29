@@ -1,10 +1,12 @@
 <script lang="ts">
+    import RegisteredUserController from '@/actions/Laravel/Fortify/Http/Controllers/RegisteredUserController';
     import InputError from '@/components/InputError.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthBase from '@/layouts/AuthLayout.svelte';
+    import { login } from '@/routes';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 </script>
@@ -14,7 +16,12 @@
 </svelte:head>
 
 <AuthBase title="Create an account" description="Enter your details below to create your account">
-    <Form method="post" action={route('register')} resetOnSuccess={['password', 'password_confirmation']} class="flex flex-col gap-6">
+    <Form
+        {...RegisteredUserController.store.form()}
+        resetOnSuccess={['password', 'password_confirmation']}
+        disableWhileProcessing
+        className="flex flex-col gap-6"
+    >
         {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
             <div class="grid gap-6">
                 <div class="grid gap-2">
@@ -59,7 +66,7 @@
 
             <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
-                <TextLink href={route('login')} class="underline underline-offset-4" tabindex={6}>Log in</TextLink>
+                <TextLink href={login()} class="underline underline-offset-4" tabindex={6}>Log in</TextLink>
             </div>
         {/snippet}
     </Form>

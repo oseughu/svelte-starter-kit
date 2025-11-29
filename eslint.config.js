@@ -44,9 +44,14 @@ export default ts.config(
     {
         rules: {
             '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-unused-vars': ['error', {
+                argsIgnorePattern: '^_',
+                varsIgnorePattern: '^_',
+            }],
             'svelte/infinite-reactive-loop': 'error',
-            'svelte/no-at-html-tags': 'error',
+            'svelte/no-at-html-tags': 'warn',
             'svelte/no-target-blank': 'error',
+            'svelte/require-each-key': 'off',
         },
     },
     {

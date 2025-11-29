@@ -3,6 +3,7 @@
     import { Button } from '@/components/ui/button';
     import { Separator } from '@/components/ui/separator';
     import { cn } from '@/lib/utils';
+    import { show } from '@/routes/two-factor';
     import { type NavItem } from '@/types';
     import { Link, page } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
@@ -15,6 +16,10 @@
         {
             title: 'Password',
             href: '/settings/password',
+        },
+        {
+            title: 'Two-Factor Auth',
+            href: show.url(),
         },
         {
             title: 'Appearance',

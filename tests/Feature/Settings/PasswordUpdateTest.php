@@ -1,51 +1,52 @@
 <?php
 
-namespace Tests\Feature\Settings;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Tests\TestCase;
 
-class PasswordUpdateTest extends TestCase
-{
-    use RefreshDatabase;
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-    public function test_password_can_be_updated()
-    {
-        $user = User::factory()->create();
+test('password update page is displayed', function () {
+    $user = User::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
-            ->from('/settings/password')
-            ->put('/settings/password', [
-                'current_password' => 'password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
-            ]);
+    $response = $this
+        ->actingAs($user)
+        ->get(route('settings.password.edit'));
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/settings/password');
+    $response->assertStatus(200);
+});
 
-        $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
-    }
+test('password can be updated', function () {
+    $user = User::factory()->create();
 
-    public function test_correct_password_must_be_provided_to_update_password()
-    {
-        $user = User::factory()->create();
+    $response = $this
+        ->actingAs($user)
+        ->from(route('settings.password.edit'))
+        ->put(route('settings.password.update'), [
+            'current_password' => 'password',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ]);
 
-        $response = $this
-            ->actingAs($user)
-            ->from('/settings/password')
-            ->put('/settings/password', [
-                'current_password' => 'wrong-password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
-            ]);
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('settings.password.edit'));
 
-        $response
-            ->assertSessionHasErrors('current_password')
-            ->assertRedirect('/settings/password');
-    }
-}
+    expect(Hash::check('new-password', $user->refresh()->password))->toBeTrue();
+});
+
+test('correct password must be provided to update password', function () {
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->from(route('settings.password.edit'))
+        ->put(route('settings.password.update'), [
+            'current_password' => 'wrong-password',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ]);
+
+    $response
+        ->assertSessionHasErrors('current_password')
+        ->assertRedirect(route('settings.password.edit'));
+});
