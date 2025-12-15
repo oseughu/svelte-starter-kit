@@ -54,11 +54,11 @@
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.49.0",
         "vaul-svelte": "^1.0.0-next.7",
-        "vite": "^7.2.7",
-        "zod": "^4.1.13"
+        "vite": "^7.3.0",
+        "zod": "^4.2.0"
     },
     "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "4.53.3",
+        "@rollup/rollup-linux-x64-gnu": "4.53.4",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.1.18",
         "lightningcss-linux-x64-gnu": "^1.30.2"
     }

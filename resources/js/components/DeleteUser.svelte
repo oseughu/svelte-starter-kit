@@ -14,6 +14,7 @@
     } from '@/components/ui/dialog';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
+    import type { DeleteFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
 
     let passwordInput = $state(null as unknown as HTMLInputElement);
@@ -42,17 +43,7 @@
                         }
                     }}
                 >
-                    {#snippet children({
-                        errors,
-                        processing,
-                        reset,
-                        clearErrors,
-                    }: {
-                        errors: Record<string, string>;
-                        processing: boolean;
-                        reset: () => void;
-                        clearErrors: () => void;
-                    })}
+                    {#snippet children({ errors, processing, reset, clearErrors }: DeleteFormSnippetProps)}
                         <DialogHeader class="space-y-3">
                             <DialogTitle>Are you sure you want to delete your account?</DialogTitle>
                             <DialogDescription>
