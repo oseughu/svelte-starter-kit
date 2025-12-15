@@ -4,6 +4,7 @@
     import { Input } from '@/components/ui/input';
     import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
 
     interface AuthConfigContent {
@@ -44,7 +45,7 @@
     <div class="space-y-6">
         {#if !showRecoveryInput}
             <Form method="post" action={route('two-factor.login')} class="space-y-4" resetOnError={true} onError={() => (code = '')}>
-                {#snippet children({ errors, processing, clearErrors }: { errors: Record<string, string>; processing: boolean; clearErrors: () => void })}
+                {#snippet children({ errors, processing, clearErrors }: BaseFormSnippetProps & { clearErrors: () => void })}
                     <input type="hidden" name="code" value={code} />
                     <div class="flex flex-col items-center justify-center space-y-3 text-center">
                         <div class="flex w-full items-center justify-center">
@@ -75,7 +76,7 @@
             </Form>
         {:else}
             <Form method="post" action={route('two-factor.login')} class="space-y-4" resetOnError={true}>
-                {#snippet children({ errors, processing, clearErrors }: { errors: Record<string, string>; processing: boolean; clearErrors: () => void })}
+                {#snippet children({ errors, processing, clearErrors }: BaseFormSnippetProps & { clearErrors: () => void })}
                     <Input name="recovery_code" type="text" placeholder="Enter recovery code" autofocus={showRecoveryInput} required />
                     <InputError message={errors.recovery_code} />
                     <Button type="submit" class="w-full" disabled={processing}>Continue</Button>

@@ -5,6 +5,7 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -28,7 +29,7 @@
 
     <div class="space-y-6">
         <Form method="post" action={route('password.email')}>
-            {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+            {#snippet children({ errors, processing }: BaseFormSnippetProps)}
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
                     <Input id="email" type="email" name="email" autocomplete="off" autofocus placeholder="email@example.com" />

@@ -4,6 +4,7 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 </script>
@@ -14,7 +15,7 @@
 
 <AuthLayout title="Confirm your password" description="This is a secure area of the application. Please confirm your password before continuing.">
     <Form method="post" action={route('password.confirm')} resetOnSuccess>
-        {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
             <div class="space-y-6">
                 <div class="grid gap-2">
                     <Label for="password">Password</Label>

@@ -16,7 +16,7 @@
 </svelte:head>
 
 <div class="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] dark:bg-[#0a0a0a] lg:justify-center lg:p-8">
-    <header class="not-has-[nav]:hidden mb-6 w-full max-w-[335px] text-sm lg:max-w-4xl">
+    <header class="not-has-[nav]:hidden mb-6 w-full max-w-83.75ext-sm lg:max-w-4xl">
         <nav class="flex items-center justify-end gap-4">
             {#if user}
                 <Link
@@ -47,9 +47,9 @@
         </nav>
     </header>
     <div class="duration-750 starting:opacity-0 flex w-full items-center justify-center opacity-100 transition-opacity lg:grow">
-        <main class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row">
+        <main class="flex w-full max-w-83.75 flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row">
             <div
-                class="flex-1 rounded-bl-lg rounded-br-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] lg:rounded-br-none lg:rounded-tl-lg lg:p-20"
+                class="flex-1 rounded-bl-lg rounded-br-lg bg-white p-6 pb-12 text-[13px] leading-5 shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] lg:rounded-br-none lg:rounded-tl-lg lg:p-20"
             >
                 <h1 class="mb-1 font-medium">Let's get started</h1>
                 <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
@@ -121,7 +121,7 @@
                 </ul>
             </div>
             <div
-                class="relative -mb-px aspect-335/376 w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] dark:bg-[#1D0002] lg:-ml-px lg:mb-0 lg:aspect-auto lg:w-[438px] lg:rounded-r-lg lg:rounded-t-none"
+                class="relative -mb-px aspect-335/376 w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] dark:bg-[#1D0002] lg:-ml-px lg:mb-0 lg:aspect-auto lg:w-109.5 lg:rounded-r-lg lg:rounded-t-none"
             >
                 <svg
                     class="duration-750 starting:translate-y-6 starting:opacity-0 w-full max-w-none translate-y-0 text-[#F53003] opacity-100 transition-all dark:text-[#F61500]"
@@ -150,7 +150,7 @@
                     />
                 </svg>
                 <svg
-                    class="relative -ml-8 -mt-[4.9rem] w-[448px] max-w-none dark:hidden lg:-mt-[6.6rem] lg:ml-0"
+                    class="relative -ml-8 -mt-[4.9rem] w-md max-w-none dark:hidden lg:-mt-[6.6rem] lg:ml-0"
                     viewBox="0 0 440 376"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -470,7 +470,7 @@
                     </g>
                 </svg>
                 <svg
-                    class="relative -ml-8 -mt-[4.9rem] hidden w-[448px] max-w-none dark:block lg:-mt-[6.6rem] lg:ml-0"
+                    class="relative -ml-8 -mt-[4.9rem] hidden w-md max-w-none dark:block lg:-mt-[6.6rem] lg:ml-0"
                     viewBox="0 0 440 376"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
