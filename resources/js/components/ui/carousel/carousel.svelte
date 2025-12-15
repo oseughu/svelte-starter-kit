@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { cn, type WithElementRef } from "@/lib/utils.js";
 	import {
-	    type CarouselAPI,
-	    type CarouselProps,
-	    type EmblaContext,
-	    setEmblaContext,
+		type CarouselAPI,
+		type CarouselProps,
+		type EmblaContext,
+		setEmblaContext,
 	} from "./context.js";
+	import { cn, type WithElementRef } from "@/lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -22,12 +22,12 @@
 		api: undefined,
 		scrollPrev,
 		scrollNext,
-		get orientation() { return orientation; },
+		orientation,
 		canScrollNext: false,
 		canScrollPrev: false,
 		handleKeyDown,
-		get options() { return opts; },
-		get plugins() { return plugins; },
+		options: opts,
+		plugins,
 		onInit,
 		scrollSnaps: [],
 		selectedIndex: 0,

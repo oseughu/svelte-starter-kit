@@ -33,7 +33,7 @@
         "formsnap": "^2.0.1",
         "globals": "^16.5.0",
         "laravel-vite-plugin": "^2.0.1",
-        "layerchart": "^2.0.0-next.27",
+        "layerchart": "^2.0.0-next.43",
         "lucide-svelte": "^0.561.0",
         "maildev": "^2.2.1",
         "mode-watcher": "^1.1.0",
