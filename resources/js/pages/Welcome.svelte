@@ -1,6 +1,11 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/svelte';
 
+    interface Props {
+        canRegister: boolean;
+    }
+
+    let { canRegister }: Props = $props();
     let user = $derived($page.props.auth.user);
 </script>
 
@@ -29,13 +34,15 @@
                 >
                     Log in
                 </Link>
-                <Link
-                    as="button"
-                    href={route('register')}
-                    class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                >
-                    Register
-                </Link>
+                {#if canRegister}
+                    <Link
+                        as="button"
+                        href={route('register')}
+                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                    >
+                        Register
+                    </Link>
+                {/if}
             {/if}
         </nav>
     </header>
@@ -68,7 +75,7 @@
                                 class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
                             >
                                 <span>Documentation</span>
-                                <svg width={10} height={11} viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5">
+                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5">
                                     <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor" stroke-linecap="square" />
                                 </svg>
                             </Link>
@@ -93,7 +100,7 @@
                                 class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
                             >
                                 <span>Laracasts</span>
-                                <svg width={10} height={11} viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5">
+                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5">
                                     <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor" stroke-linecap="square" />
                                 </svg>
                             </a>

@@ -5,16 +5,18 @@
     import { Checkbox } from '@/components/ui/checkbox';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
+    import { Spinner } from '@/components/ui/spinner';
     import AuthBase from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
 
     interface Props {
         status?: string;
         canResetPassword: boolean;
+        canRegister: boolean;
     }
 
-    let { status, canResetPassword }: Props = $props();
+    let { status, canResetPassword, canRegister }: Props = $props();
 </script>
 
 <svelte:head>
@@ -29,7 +31,7 @@
     {/if}
 
     <Form method="post" action={route('login')} resetOnSuccess={['password']} class="flex flex-col gap-6">
-        {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
@@ -74,16 +76,18 @@
 
                 <Button type="submit" class="mt-4 w-full" tabindex={4} disabled={processing}>
                     {#if processing}
-                        <LoaderCircle class="h-4 w-4 animate-spin" />
+                        <Spinner />
                     {/if}
                     Log in
                 </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink href={route('register')} tabindex={5}>Sign up</TextLink>
-            </div>
+            {#if canRegister}
+                <div class="text-center text-sm text-muted-foreground">
+                    Don't have an account?
+                    <TextLink href={route('register')} tabindex={5}>Sign up</TextLink>
+                </div>
+            {/if}
         {/snippet}
     </Form>
 </AuthBase>

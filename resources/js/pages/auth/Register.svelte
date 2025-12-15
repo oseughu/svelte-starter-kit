@@ -4,9 +4,10 @@
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
+    import { Spinner } from '@/components/ui/spinner';
     import AuthBase from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -15,7 +16,7 @@
 
 <AuthBase title="Create an account" description="Enter your details below to create your account">
     <Form method="post" action={route('register')} resetOnSuccess={['password', 'password_confirmation']} class="flex flex-col gap-6">
-        {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="name">Name</Label>
@@ -51,7 +52,7 @@
 
                 <Button type="submit" class="mt-2 w-full" tabindex={5} disabled={processing}>
                     {#if processing}
-                        <LoaderCircle class="h-4 w-4 animate-spin" />
+                        <Spinner />
                     {/if}
                     Create account
                 </Button>

@@ -17,6 +17,10 @@
             href: '/settings/password',
         },
         {
+            title: 'Two-Factor',
+            href: '/settings/two-factor',
+        },
+        {
             title: 'Appearance',
             href: '/settings/appearance',
         },
