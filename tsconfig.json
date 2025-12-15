@@ -113,12 +113,6 @@
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
         "skipLibCheck": true /* Skip type checking all .d.ts files. */
     },
-    "include": [
-        "resources/js/**/*.svelte",
-        "resources/js/**/*.svelte.js",
-        "resources/js/**/*.svelte.ts",
-        "resources/js/**/*.ts",
-        "resources/js/**/*.d.ts",
-        "resources/js/**/*.js"
-    ]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/types/global.d.ts", "resources/js/**/*.svelte"],
+    "exclude": ["resources/js/components/ui/**/*"]
 }

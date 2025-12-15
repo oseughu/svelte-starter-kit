@@ -7,8 +7,9 @@
     import { Label } from '@/components/ui/label';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
-    import { edit } from '@/routes/password';
+    import { edit } from '@/routes/user-password';
     import { type BreadcrumbItem } from '@/types';
+    import type { ProfileFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
     import { fade } from 'svelte/transition';
 
@@ -48,15 +49,7 @@
                 resetOnError={['password', 'password_confirmation', 'current_password']}
                 class="space-y-6"
             >
-                {#snippet children({
-                    errors,
-                    processing,
-                    recentlySuccessful,
-                }: {
-                    errors: Record<string, string>;
-                    processing: boolean;
-                    recentlySuccessful: boolean;
-                })}
+                {#snippet children({ errors, processing, recentlySuccessful }: ProfileFormSnippetProps)}
                     <div class="grid gap-2">
                         <Label for="current_password">Current password</Label>
                         <Input

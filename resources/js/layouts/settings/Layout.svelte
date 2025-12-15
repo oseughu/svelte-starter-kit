@@ -3,26 +3,34 @@
     import { Button } from '@/components/ui/button';
     import { Separator } from '@/components/ui/separator';
     import { cn } from '@/lib/utils';
+    import { edit as appearance } from '@/routes/appearance';
+    import { edit } from '@/routes/profile';
+    import { show as editTwoFactor } from '@/routes/two-factor';
+    import { edit as editPassword } from '@/routes/user-password';
     import { type NavItem } from '@/types';
-    import { Link, page } from '@inertiajs/svelte';
+    import { Link } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
 
     const sidebarNavItems: NavItem[] = [
         {
             title: 'Profile',
-            href: '/settings/profile',
+            href: edit().url,
         },
         {
             title: 'Password',
-            href: '/settings/password',
+            href: editPassword().url,
+        },
+        {
+            title: 'Two-Factor',
+            href: editTwoFactor().url,
         },
         {
             title: 'Appearance',
-            href: '/settings/appearance',
+            href: appearance().url,
         },
     ];
 
-    const currentPath = $page.props.ziggy?.location ? new URL($page.props.ziggy.location).pathname : '';
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
 
     interface Props {
         children?: Snippet;

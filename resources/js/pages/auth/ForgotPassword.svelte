@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PasswordResetLinkController from '@/actions/App/Http/Controllers/Auth/PasswordResetLinkController';
+    import PasswordResetLinkController from '@/actions/Laravel/Fortify/Http/Controllers/PasswordResetLinkController';
     import InputError from '@/components/InputError.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
@@ -7,6 +7,7 @@
     import { Label } from '@/components/ui/label';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
     import { login } from '@/routes';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -30,7 +31,7 @@
 
     <div class="space-y-6">
         <Form {...PasswordResetLinkController.store.form()}>
-            {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+            {#snippet children({ errors, processing }: BaseFormSnippetProps)}
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
                     <Input id="email" type="email" name="email" autocomplete="off" autofocus placeholder="email@example.com" />

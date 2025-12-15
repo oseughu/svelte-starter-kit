@@ -1,10 +1,11 @@
 <script lang="ts">
-    import NewPasswordController from '@/actions/App/Http/Controllers/Auth/NewPasswordController';
+    import NewPasswordController from '@/actions/Laravel/Fortify/Http/Controllers/NewPasswordController';
     import InputError from '@/components/InputError.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
+    import type { BaseFormSnippetProps } from '@/types/forms';
     import { Form } from '@inertiajs/svelte';
     import { LoaderCircle } from 'lucide-svelte';
 
@@ -26,7 +27,7 @@
         transform={(data) => ({ ...data, token, email })}
         resetOnSuccess={['password', 'password_confirmation']}
     >
-        {#snippet children({ errors, processing }: { errors: Record<string, string>; processing: boolean })}
+        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="email">Email</Label>

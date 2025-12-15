@@ -17,7 +17,7 @@
     import { Label } from '@/components/ui/label';
     import { Form } from '@inertiajs/svelte';
 
-    let passwordInput = $state(null as unknown as HTMLInputElement);
+    let passwordInput: HTMLInputElement | undefined;
 </script>
 
 <div class="space-y-6">
@@ -62,7 +62,7 @@
 
                         <div class="grid gap-2">
                             <Label for="password" class="sr-only">Password</Label>
-                            <Input id="password" type="password" name="password" ref={passwordInput} placeholder="Password" />
+                            <Input id="password" type="password" name="password" bind:ref={passwordInput} placeholder="Password" />
                             <InputError message={errors.password} />
                         </div>
 
@@ -77,9 +77,7 @@
                                 >
                             </DialogClose>
 
-                            <Button variant="destructive" disabled={processing}>
-                                <button type="submit">Delete account</button>
-                            </Button>
+                            <Button type="submit" variant="destructive" disabled={processing}>Delete account</Button>
                         </DialogFooter>
                     {/snippet}
                 </Form>
