@@ -23,14 +23,17 @@
         </div>
     {/if}
 
-    <Form method="post" action={route('verification.send')} className="space-y-6 text-center">
+    <Form method="post" action={route('verification.send')} className="space-y-6 text-center ">
         {#snippet children({ processing }: { processing: boolean })}
-            <Button type="submit" disabled={processing} variant="secondary">
-                {#if processing}
-                    <LoaderCircle class="h-4 w-4 animate-spin" />
-                {/if}
-                Resend verification email
-            </Button>
+            <div class="flex justify-center mb-4">
+                <Button type="submit" disabled={processing} variant="secondary">
+                    {#if processing}
+                        <LoaderCircle class="h-4 w-4 animate-spin" />
+                    {/if}
+                    Resend verification email
+                </Button>
+            </div>
+
 
             <TextLink href={route('logout')} method="post" as="button" class="mx-auto block text-sm">Log out</TextLink>
         {/snippet}
