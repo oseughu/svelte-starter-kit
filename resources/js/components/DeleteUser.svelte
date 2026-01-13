@@ -16,7 +16,7 @@
     import { Label } from '@/components/ui/label';
     import { Form } from '@inertiajs/svelte';
 
-    let passwordInput: HTMLInputElement | undefined;
+    let passwordInput: HTMLInputElement | null = null;
 </script>
 
 <div class="space-y-6">
