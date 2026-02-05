@@ -5,7 +5,6 @@
     import type { Snippet } from 'svelte';
 
     const name = $page.props.name;
-    const quote = $page.props.quote;
 
     interface Props {
         title: string;
@@ -23,14 +22,6 @@
             <AppLogoIcon class="mr-2 size-8 fill-current text-white" />
             {name}
         </Link>
-        {#if quote}
-            <div class="relative z-20 mt-auto">
-                <blockquote class="space-y-2">
-                    <p class="text-lg">&ldquo;{quote.message}&rdquo;</p>
-                    <footer class="text-sm text-neutral-300">{quote.author}</footer>
-                </blockquote>
-            </div>
-        {/if}
     </div>
     <div class="lg:p-8">
         <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
