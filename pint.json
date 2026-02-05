@@ -1,9 +1,3 @@
 {
-    "preset": "laravel",
-    "rules": {
-        "concat_space": false,
-        "not_operator_with_successor_space": false,
-        "unary_operator_spaces": false,
-        "function_declaration": false
-    }
+    "preset": "laravel"
 }
