@@ -19,8 +19,8 @@ export interface NavItem {
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
+    sidebarOpen: boolean;
     [key: string]: unknown;
     ziggy: Config & { location: string };
 };
@@ -34,6 +34,7 @@ export interface User {
     two_factor_confirmed_at: string | null;
     created_at: string;
     updated_at: string;
+    [key: string]: unknown;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
