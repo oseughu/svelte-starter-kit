@@ -23,7 +23,7 @@
         </Link>
     </div>
     <div class="lg:p-8">
-        <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+        <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-87.5">
             <div class="flex flex-col space-y-2 text-center">
                 {#if title}
                     <h1 class="text-xl font-medium tracking-tight">{title}</h1>
