@@ -34,7 +34,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Laravel\\WorkOS\\Http\\Middleware\\": "tests/Stubs/",
+            "Laravel\\WorkOS\\Http\\Requests\\": "tests/Stubs/"
         }
     },
     "scripts": {
