@@ -1,4 +1,5 @@
 {
+    "$schema": "https://www.schemastore.org/package.json",
     "private": true,
     "type": "module",
     "scripts": {
@@ -8,6 +9,7 @@
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
+        "svelte:check": "svelte-check --tsconfig ./tsconfig.json",
         "shadcn:update": "npx shadcn-svelte update --all"
     },
     "devDependencies": {
