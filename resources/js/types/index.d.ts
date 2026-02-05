@@ -19,10 +19,10 @@ export interface NavItem {
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
-    [key: string]: unknown;
+    sidebarOpen: boolean;
     ziggy: Config & { location: string };
+    [key: string]: unknown;
 };
 
 export interface User {
