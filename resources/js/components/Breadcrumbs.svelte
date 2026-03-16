@@ -1,31 +1,38 @@
 <script lang="ts">
-    import { Breadcrumb, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Item } from '@/components/ui/breadcrumb';
     import { Link } from '@inertiajs/svelte';
+    import {
+        Breadcrumb,
+        BreadcrumbItem,
+        BreadcrumbLink,
+        BreadcrumbList,
+        BreadcrumbPage,
+        BreadcrumbSeparator,
+    } from '@/components/ui/breadcrumb';
+    import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
-    interface BreadcrumbItem {
-        title: string;
-        href?: string;
-    }
-
-    interface Props {
-        breadcrumbs: BreadcrumbItem[];
-    }
-
-    let { breadcrumbs }: Props = $props();
+    let {
+        breadcrumbs = [],
+    }: {
+        breadcrumbs: BreadcrumbItemType[];
+    } = $props();
 </script>
 
 <Breadcrumb>
     <BreadcrumbList>
-        {#each breadcrumbs as item, index (index)}
-            <Item>
+        {#each breadcrumbs as item, index (item.href)}
+            <BreadcrumbItem>
                 {#if index === breadcrumbs.length - 1}
                     <BreadcrumbPage>{item.title}</BreadcrumbPage>
                 {:else}
-                    <BreadcrumbLink>
-                        <Link href={item.href ?? '#'}>{item.title}</Link>
+                    <BreadcrumbLink asChild>
+                        {#snippet children(props)}
+                            <Link href={item.href} class={props.class}>
+                                {item.title}
+                            </Link>
+                        {/snippet}
                     </BreadcrumbLink>
                 {/if}
-            </Item>
+            </BreadcrumbItem>
             {#if index !== breadcrumbs.length - 1}
                 <BreadcrumbSeparator />
             {/if}

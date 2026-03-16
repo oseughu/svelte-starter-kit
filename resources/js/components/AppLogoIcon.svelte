@@ -1,8 +1,19 @@
 <script lang="ts">
-    let { ...attrs } = $props();
+    let {
+        class: className = '',
+        ...rest
+    }: {
+        class?: string;
+        [key: string]: unknown;
+    } = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 42" {...attrs}>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 40 42"
+    class={className}
+    {...rest}
+>
     <path
         fill="currentColor"
         fill-rule="evenodd"
