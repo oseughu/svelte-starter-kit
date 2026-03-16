@@ -1,24 +1,31 @@
 <script lang="ts">
-    import { SidebarInset } from '@/components/ui/sidebar';
     import type { Snippet } from 'svelte';
+    import { SidebarInset } from '@/components/ui/sidebar';
+    import { cn } from '@/lib/utils';
+    import type { AppVariant } from '@/types';
 
-    type Props = {
-        variant?: 'header' | 'sidebar';
+    let {
+        variant = 'sidebar',
+        class: className = '',
+        children,
+    }: {
+        variant?: AppVariant;
         class?: string;
-        children: Snippet;
-    };
-
-    let { variant, class: className, children }: Props = $props();
+        children?: Snippet;
+    } = $props();
 </script>
 
 {#if variant === 'sidebar'}
     <SidebarInset class={className}>
-        <div class="mx-auto w-full max-w-7xl">
-            {@render children?.()}
-        </div>
+        {@render children?.()}
     </SidebarInset>
 {:else}
-    <main class="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col gap-4 rounded-xl {className}">
+    <main
+        class={cn(
+            'mx-auto flex h-full w-full max-w-7xl flex-1 flex-col gap-4 rounded-xl',
+            className,
+        )}
+    >
         {@render children?.()}
     </main>
 {/if}

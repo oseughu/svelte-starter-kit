@@ -1,27 +1,31 @@
 <script lang="ts">
     import AppearanceTabs from '@/components/AppearanceTabs.svelte';
-    import HeadingSmall from '@/components/HeadingSmall.svelte';
-    import { type BreadcrumbItem } from '@/types';
-
+    import AppHead from '@/components/AppHead.svelte';
+    import Heading from '@/components/Heading.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
+    import type { BreadcrumbItem } from '@/types';
 
     const breadcrumbItems: BreadcrumbItem[] = [
         {
             title: 'Appearance settings',
-            href: '/settings/appearance',
+            href: route('appearance.edit'),
         },
     ];
 </script>
 
-<svelte:head>
-    <title>Appearance Settings</title>
-</svelte:head>
+<AppHead title="Appearance settings" />
 
 <AppLayout breadcrumbs={breadcrumbItems}>
+    <h1 class="sr-only">Appearance settings</h1>
+
     <SettingsLayout>
         <div class="space-y-6">
-            <HeadingSmall title="Appearance settings" description="Update your account's appearance settings" />
+            <Heading
+                variant="small"
+                title="Appearance settings"
+                description="Update your account's appearance settings"
+            />
             <AppearanceTabs />
         </div>
     </SettingsLayout>

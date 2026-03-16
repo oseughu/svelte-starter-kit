@@ -1,21 +1,13 @@
 <script lang="ts">
-	import { Separator as SeparatorPrimitive } from "bits-ui";
-	import { cn } from "@/lib/utils.js";
+    import { cn } from '@/lib/utils';
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		"data-slot": dataSlot = "separator",
-		...restProps
-	}: SeparatorPrimitive.RootProps = $props();
+    let { class: className = '', orientation = 'horizontal', ...rest } = $props();
+
+    const base = $derived(
+        orientation === 'vertical'
+            ? 'h-full w-px bg-border'
+            : 'h-px w-full bg-border',
+    );
 </script>
 
-<SeparatorPrimitive.Root
-	bind:ref
-	data-slot={dataSlot}
-	class={cn(
-		"bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-		className
-	)}
-	{...restProps}
-/>
+<div class={cn('shrink-0', base, className)} {...rest}></div>

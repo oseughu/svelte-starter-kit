@@ -1,13 +1,14 @@
 <script lang="ts">
+    import CircleAlert from 'lucide-svelte/icons/circle-alert';
     import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-    import { CircleAlert } from 'lucide-svelte';
 
-    interface Props {
+    let {
+        errors = [],
+        title = 'Something went wrong.',
+    }: {
         errors: string[];
         title?: string;
-    }
-
-    let { errors, title = 'Something went wrong.' }: Props = $props();
+    } = $props();
 
     const uniqueErrors = $derived([...new Set(errors)]);
 </script>
@@ -17,7 +18,7 @@
     <AlertTitle>{title}</AlertTitle>
     <AlertDescription>
         <ul class="list-inside list-disc text-sm">
-            {#each uniqueErrors as error, index (index)}
+            {#each uniqueErrors as error (error)}
                 <li>{error}</li>
             {/each}
         </ul>

@@ -1,17 +1,20 @@
 <script lang="ts">
-    import { SidebarProvider } from '@/components/ui/sidebar';
     import { page } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
+    import { SidebarProvider } from '@/components/ui/sidebar';
+    import type { AppVariant } from '@/types';
 
-    interface Props {
-        variant?: 'header' | 'sidebar';
+    let {
+        variant = 'sidebar',
+        class: className = '',
+        children,
+    }: {
+        variant?: AppVariant;
         class?: string;
         children?: Snippet;
-    }
+    } = $props();
 
-    let { variant = 'sidebar', class: className, children }: Props = $props();
-
-    const isOpen = $derived($page.props.sidebarOpen as boolean);
+    const isOpen = $derived($page.props.sidebarOpen);
 </script>
 
 {#if variant === 'header'}
@@ -19,7 +22,7 @@
         {@render children?.()}
     </div>
 {:else}
-    <SidebarProvider open={isOpen}>
+    <SidebarProvider defaultOpen={isOpen}>
         {@render children?.()}
     </SidebarProvider>
 {/if}

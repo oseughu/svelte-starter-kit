@@ -1,36 +1,47 @@
 <script lang="ts">
-	import { Checkbox as CheckboxPrimitive } from "bits-ui";
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import MinusIcon from "@lucide/svelte/icons/minus";
-	import { cn, type WithoutChildrenOrChild } from "@/lib/utils.js";
+    import { cn } from '@/lib/utils';
+    import Check from 'lucide-svelte/icons/check';
 
-	let {
-		ref = $bindable(null),
-		checked = $bindable(false),
-		indeterminate = $bindable(false),
-		class: className,
-		...restProps
-	}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();
+    let {
+        checked = $bindable(false),
+        disabled = false,
+        class: className = '',
+        id,
+        name,
+        value,
+        ...rest
+    }: {
+        checked?: boolean;
+        disabled?: boolean;
+        class?: string;
+        id?: string;
+        name?: string;
+        value?: string;
+        [key: string]: unknown;
+    } = $props();
 </script>
 
-<CheckboxPrimitive.Root
-	bind:ref
-	data-slot="checkbox"
-	class={cn(
-		"border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
-		className
-	)}
-	bind:checked
-	bind:indeterminate
-	{...restProps}
+<button
+    type="button"
+    role="checkbox"
+    aria-checked={checked}
+    data-state={checked ? 'checked' : 'unchecked'}
+    data-slot="checkbox"
+    {disabled}
+    {id}
+    class={cn(
+        'peer border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-lg border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        className,
+    )}
+    onclick={() => { if (!disabled) checked = !checked; }}
+    {...rest}
 >
-	{#snippet children({ checked, indeterminate })}
-		<div data-slot="checkbox-indicator" class="text-current transition-none">
-			{#if checked}
-				<CheckIcon class="size-3.5" />
-			{:else if indeterminate}
-				<MinusIcon class="size-3.5" />
-			{/if}
-		</div>
-	{/snippet}
-</CheckboxPrimitive.Root>
+    {#if checked}
+        <div data-slot="checkbox-indicator" class="grid place-content-center text-current transition-none">
+            <Check class="size-3.5" />
+        </div>
+    {/if}
+</button>
+{#if name}
+    <input type="hidden" {name} {value} />
+{/if}
