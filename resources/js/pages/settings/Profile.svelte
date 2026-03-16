@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Form, page } from '@inertiajs/svelte';
+    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
     import AppHead from '@/components/AppHead.svelte';
     import DeleteUser from '@/components/DeleteUser.svelte';
     import Heading from '@/components/Heading.svelte';
@@ -10,10 +11,9 @@
     import { Label } from '@/components/ui/label';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
-    import type { BreadcrumbItem } from '@/types';
-    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
     import { edit } from '@/routes/profile';
     import { send } from '@/routes/verification';
+    import type { BreadcrumbItem } from '@/types';
 
     let {
         mustVerifyEmail,

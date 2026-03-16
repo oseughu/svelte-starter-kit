@@ -2,6 +2,7 @@
     import { Form } from '@inertiajs/svelte';
     import ShieldCheck from 'lucide-svelte/icons/shield-check';
     import { onDestroy } from 'svelte';
+    import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
     import AppHead from '@/components/AppHead.svelte';
     import Heading from '@/components/Heading.svelte';
     import InputError from '@/components/InputError.svelte';
@@ -13,10 +14,9 @@
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
     import { twoFactorAuthState } from '@/lib/twoFactorAuth.svelte';
-    import type { BreadcrumbItem } from '@/types';
-    import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
     import { edit } from '@/routes/security';
     import { disable, enable } from '@/routes/two-factor';
+    import type { BreadcrumbItem } from '@/types';
 
     let {
         canManageTwoFactor = false,

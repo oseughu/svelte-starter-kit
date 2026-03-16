@@ -10,8 +10,8 @@
         InputOTPSlot,
     } from '@/components/ui/input-otp';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
-    import type { TwoFactorConfigContent } from '@/types';
     import { store } from '@/routes/two-factor/login';
+    import type { TwoFactorConfigContent } from '@/types';
 
     let showRecoveryInput = $state(false);
     let code = $state('');

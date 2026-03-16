@@ -4,8 +4,8 @@
     import Heading from '@/components/Heading.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
     import SettingsLayout from '@/layouts/settings/Layout.svelte';
-    import type { BreadcrumbItem } from '@/types';
     import { edit as editAppearance } from '@/routes/appearance';
+    import type { BreadcrumbItem } from '@/types';
 
     const breadcrumbItems: BreadcrumbItem[] = [
         {
