@@ -49,7 +49,8 @@
     <div class="space-y-6">
         {#if !showRecoveryInput}
             <Form
-                method="post" action={route('two-factor.login.store')}
+                method="post"
+                action={route('two-factor.login.store')}
                 class="space-y-4"
                 resetOnError
                 onError={() => (code = '')}
@@ -91,7 +92,12 @@
                 {/snippet}
             </Form>
         {:else}
-            <Form method="post" action={route('two-factor.login.store')} class="space-y-4" resetOnError>
+            <Form
+                method="post"
+                action={route('two-factor.login.store')}
+                class="space-y-4"
+                resetOnError
+            >
                 {#snippet children({ errors, processing, clearErrors })}
                     <Input
                         name="recovery_code"

@@ -25,14 +25,22 @@
         </div>
     {/if}
 
-    <Form method="post" action={route('verification.send')} class="space-y-6 text-center">
+    <Form
+        method="post"
+        action={route('verification.send')}
+        class="space-y-6 text-center"
+    >
         {#snippet children({ processing })}
             <Button type="submit" disabled={processing} variant="secondary">
                 {#if processing}<Spinner />{/if}
                 Resend verification email
             </Button>
 
-            <TextLink href={route('logout')} as="button" class="mx-auto block text-sm">
+            <TextLink
+                href={route('logout')}
+                as="button"
+                class="mx-auto block text-sm"
+            >
                 Log out
             </TextLink>
         {/snippet}

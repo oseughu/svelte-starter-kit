@@ -18,7 +18,8 @@
     description="Enter your details below to create your account"
 >
     <Form
-        method="post" action={route('register')}
+        method="post"
+        action={route('register')}
         resetOnSuccess={['password', 'password_confirmation']}
         class="flex flex-col gap-6"
     >
@@ -87,7 +88,10 @@
 
             <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
-                <TextLink href={route('login')} class="underline underline-offset-4">
+                <TextLink
+                    href={route('login')}
+                    class="underline underline-offset-4"
+                >
                     Log in
                 </TextLink>
             </div>

@@ -34,7 +34,8 @@
     {/if}
 
     <Form
-        method="post" action={route('login')}
+        method="post"
+        action={route('login')}
         resetOnSuccess={['password']}
         class="flex flex-col gap-6"
     >
@@ -57,7 +58,10 @@
                     <div class="flex items-center justify-between">
                         <Label for="password">Password</Label>
                         {#if canResetPassword}
-                            <TextLink href={route('password.request')} class="text-sm">
+                            <TextLink
+                                href={route('password.request')}
+                                class="text-sm"
+                            >
                                 Forgot password?
                             </TextLink>
                         {/if}

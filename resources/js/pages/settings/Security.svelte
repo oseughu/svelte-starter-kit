@@ -52,7 +52,8 @@
             />
 
             <Form
-                method="put" action={route('user-password.update')}
+                method="put"
+                action={route('user-password.update')}
                 class="space-y-6"
                 options={{ preserveScroll: true }}
                 resetOnSuccess
@@ -144,7 +145,8 @@
                                 </Button>
                             {:else}
                                 <Form
-                                    method="post" action={route('two-factor.enable')}
+                                    method="post"
+                                    action={route('two-factor.enable')}
                                     onSuccess={() => (showSetupModal = true)}
                                 >
                                     {#snippet children({ processing })}
@@ -170,7 +172,10 @@
                         </p>
 
                         <div class="relative inline">
-                            <Form method="delete" action={route('two-factor.disable')}>
+                            <Form
+                                method="delete"
+                                action={route('two-factor.disable')}
+                            >
                                 {#snippet children({ processing })}
                                     <Button
                                         variant="destructive"

@@ -89,6 +89,7 @@
             showVerificationStep = true;
             await tick();
             pinInputContainerRef?.querySelector('input')?.focus();
+
             return;
         }
 
@@ -108,6 +109,7 @@
     $effect(() => {
         if (!isOpen) {
             resetModalState();
+
             return;
         }
 
@@ -247,7 +249,8 @@
                 {/if}
             {:else}
                 <Form
-                    method="post" action={route('two-factor.confirm')}
+                    method="post"
+                    action={route('two-factor.confirm')}
                     resetOnError
                     onFinish={() => (code = '')}
                     onSuccess={() => (isOpen = false)}

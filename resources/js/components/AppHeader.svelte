@@ -41,7 +41,7 @@
     import UserMenuContent from '@/components/UserMenuContent.svelte';
     import { currentUrlState } from '@/lib/currentUrl';
     import { getInitials } from '@/lib/initials';
-        import type { BreadcrumbItem, NavItem } from '@/types';
+    import type { BreadcrumbItem, NavItem } from '@/types';
 
     let {
         breadcrumbs = [],
@@ -107,9 +107,9 @@
                             class="flex h-full flex-1 flex-col justify-between space-y-4 pt-6 pb-10"
                         >
                             <nav class="-mx-3 space-y-1">
-                                {#each mainNavItems as item ((item.href))}
+                                {#each mainNavItems as item (item.href)}
                                     <Link
-                                        href={(item.href)}
+                                        href={item.href}
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {whenCurrentUrl(
                                             item.href,
                                             $currentUrl,
@@ -125,9 +125,9 @@
                                 {/each}
                             </nav>
                             <div class="flex flex-col space-y-4">
-                                {#each rightNavItems as item ((item.href))}
+                                {#each rightNavItems as item (item.href)}
                                     <a
-                                        href={(item.href)}
+                                        href={item.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
@@ -144,7 +144,7 @@
                 </Sheet>
             </div>
 
-            <Link href={(route('dashboard'))} class="flex items-center gap-x-2">
+            <Link href={route('dashboard')} class="flex items-center gap-x-2">
                 <AppLogo />
             </Link>
 
@@ -154,7 +154,7 @@
                     <NavigationMenuList
                         class="flex h-full items-stretch space-x-2"
                     >
-                        {#each mainNavItems as item ((item.href))}
+                        {#each mainNavItems as item (item.href)}
                             <NavigationMenuItem
                                 class="relative flex h-full items-center"
                             >
@@ -165,7 +165,7 @@
                                         activeItemStyles,
                                         '',
                                     ) ?? ''} h-9 cursor-pointer px-4"
-                                    href={(item.href)}
+                                    href={item.href}
                                 >
                                     {#if item.icon}
                                         <item.icon class="mr-2 h-4 w-4" />
@@ -196,13 +196,13 @@
                     </Button>
 
                     <div class="hidden space-x-1 lg:flex">
-                        {#each rightNavItems as item ((item.href))}
+                        {#each rightNavItems as item (item.href)}
                             <TooltipProvider delayDuration={0}>
                                 <Tooltip>
                                     <TooltipTrigger>
                                         {#snippet child({ props })}
                                             <a
-                                                href={(item.href)}
+                                                href={item.href}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 {...props}

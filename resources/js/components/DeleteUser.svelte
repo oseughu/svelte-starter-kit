@@ -39,7 +39,8 @@
             </DialogTrigger>
             <DialogContent>
                 <Form
-                    method="delete" action={route('profile.destroy')}
+                    method="delete"
+                    action={route('profile.destroy')}
                     class="space-y-6"
                     options={{ preserveScroll: true }}
                 >
