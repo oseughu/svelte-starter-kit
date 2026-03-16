@@ -1,16 +1,17 @@
 <script lang="ts">
+    import type { Snippet } from 'svelte';
     import AppContent from '@/components/AppContent.svelte';
     import AppHeader from '@/components/AppHeader.svelte';
     import AppShell from '@/components/AppShell.svelte';
-    import type { BreadcrumbItemType } from '@/types';
-    import type { Snippet } from 'svelte';
+    import type { BreadcrumbItem } from '@/types';
 
-    interface Props {
-        breadcrumbs?: BreadcrumbItemType[];
+    let {
+        breadcrumbs = [],
+        children,
+    }: {
+        breadcrumbs?: BreadcrumbItem[];
         children?: Snippet;
-    }
-
-    let { breadcrumbs = [], children }: Props = $props();
+    } = $props();
 </script>
 
 <AppShell variant="header">

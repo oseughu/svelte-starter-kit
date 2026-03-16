@@ -1,32 +1,48 @@
 <script lang="ts">
-    import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+    import { Link } from '@inertiajs/svelte';
+    import {
+        SidebarGroup,
+        SidebarGroupLabel,
+        SidebarMenu,
+        SidebarMenuButton,
+        SidebarMenuItem,
+    } from '@/components/ui/sidebar';
+    import { currentUrlState } from '@/lib/currentUrl';
+    import { toUrl } from '@/lib/utils';
     import type { NavItem } from '@/types';
-    import { Link, page } from '@inertiajs/svelte';
 
-    interface Props {
+    let {
+        items = [],
+    }: {
         items: NavItem[];
-    }
+    } = $props();
 
-    let { items = [] }: Props = $props();
+    const { currentUrl, isCurrentUrl } = currentUrlState();
 </script>
 
 <SidebarGroup class="px-2 py-0">
     <SidebarGroupLabel>Platform</SidebarGroupLabel>
     <SidebarMenu>
-        {#each items as item (item.title)}
+        {#each items as item (toUrl(item.href))}
             <SidebarMenuItem>
-                <Link href={item.href} class="block w-full">
-                    <SidebarMenuButton isActive={item.href === $page.url}>
-                        {#snippet tooltipContent()}
-                            {item.title}
-                        {/snippet}
-                        {#if item.icon}
-                            {@const Icon = item.icon}
-                            <Icon class="h-4 w-4 shrink-0" />
-                        {/if}
-                        <span>{item.title}</span>
-                    </SidebarMenuButton>
-                </Link>
+                <SidebarMenuButton
+                    asChild
+                    isActive={isCurrentUrl(item.href, $currentUrl)}
+                    tooltip={item.title}
+                >
+                    {#snippet children(props)}
+                        <Link
+                            {...props}
+                            href={toUrl(item.href)}
+                            class={props.class}
+                        >
+                            {#if item.icon}
+                                <item.icon class="size-4 shrink-0" />
+                            {/if}
+                            <span>{item.title}</span>
+                        </Link>
+                    {/snippet}
+                </SidebarMenuButton>
             </SidebarMenuItem>
         {/each}
     </SidebarMenu>
