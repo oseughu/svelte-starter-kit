@@ -13,6 +13,7 @@ createServer((page) =>
                 './pages/**/*.svelte',
                 { eager: true },
             );
+
             return pages[`./pages/${name}.svelte`];
         },
         title: (title) => (title ? `${title} - ${appName}` : appName),
