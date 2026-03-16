@@ -1,35 +1,45 @@
 <script lang="ts">
+    import AppHead from '@/components/AppHead.svelte';
     import PlaceholderPattern from '@/components/PlaceholderPattern.svelte';
     import AppLayout from '@/layouts/AppLayout.svelte';
-    import { type BreadcrumbItem } from '@/types';
+    import { dashboard } from '@/routes';
+    import type { BreadcrumbItem } from '@/types';
 
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Dashboard',
-            href: '/dashboard',
+            href: dashboard(),
         },
     ];
 </script>
 
-<svelte:head>
-    <title>Dashboard</title>
-</svelte:head>
+<AppHead title="Dashboard" />
 
 <AppLayout {breadcrumbs}>
-    <div class="space-y-4 px-4 pt-4 overflow-x-auto">
+    <div
+        class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
+    >
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            <div
+                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+            >
+                <PlaceholderPattern />
             </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            <div
+                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+            >
+                <PlaceholderPattern />
             </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            <div
+                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+            >
+                <PlaceholderPattern />
             </div>
         </div>
-        <div class="relative h-[calc(100vh-21rem)] overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-            <PlaceholderPattern class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+        <div
+            class="relative min-h-screen flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
+        >
+            <PlaceholderPattern />
         </div>
     </div>
 </AppLayout>

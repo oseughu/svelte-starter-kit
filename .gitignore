@@ -2,17 +2,15 @@
 /bootstrap/ssr
 /node_modules
 /public/build
-/public/manifest.json
-/public/service-worker.js
 /public/hot
 /public/storage
-/public/vendor
+/storage/*.key
+/storage/pail
 /resources/js/actions
 /resources/js/routes
 /resources/js/wayfinder
-/storage/*.key
-/storage/pail
 /vendor
+.DS_Store
 .env
 .env.backup
 .env.production
@@ -28,5 +26,3 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-.DS_Store
-/.claude

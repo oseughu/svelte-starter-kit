@@ -1,21 +1,31 @@
 <script lang="ts">
+    import { Link, router } from '@inertiajs/svelte';
+    import LogOut from 'lucide-svelte/icons/log-out';
+    import Settings from 'lucide-svelte/icons/settings';
+    import {
+        DropdownMenuGroup,
+        DropdownMenuItem,
+        DropdownMenuLabel,
+        DropdownMenuSeparator,
+    } from '@/components/ui/dropdown-menu';
     import UserInfo from '@/components/UserInfo.svelte';
-    import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+    import { toUrl } from '@/lib/utils';
     import { logout } from '@/routes';
     import { edit } from '@/routes/profile';
     import type { User } from '@/types';
-    import { Link, router } from '@inertiajs/svelte';
-    import { LogOut, Settings } from 'lucide-svelte';
 
-    interface Props {
+    let {
+        user,
+    }: {
         user: User;
+    } = $props();
+
+    function handleLogout(propsOnClick?: (event: MouseEvent) => void) {
+        return (event: MouseEvent) => {
+            propsOnClick?.(event);
+            router.flushAll();
+        };
     }
-
-    let { user }: Props = $props();
-
-    const handleLogout = () => {
-        router.flushAll();
-    };
 </script>
 
 <DropdownMenuLabel class="p-0 font-normal">
@@ -25,21 +35,32 @@
 </DropdownMenuLabel>
 <DropdownMenuSeparator />
 <DropdownMenuGroup>
-    <DropdownMenuItem>
-        <Link class="block w-full" href={edit()} prefetch as="button">
-            <div class="flex items-center">
+    <DropdownMenuItem asChild>
+        {#snippet children(props)}
+            <Link
+                class={props.class}
+                href={toUrl(edit())}
+                prefetch
+                onclick={props.onClick}
+            >
                 <Settings class="mr-2 h-4 w-4" />
-                <span>Settings</span>
-            </div>
-        </Link>
+                Settings
+            </Link>
+        {/snippet}
     </DropdownMenuItem>
 </DropdownMenuGroup>
 <DropdownMenuSeparator />
-<DropdownMenuItem>
-    <Link class="block w-full" method="post" onclick={handleLogout} href={logout()} as="button">
-        <div class="flex items-center">
+<DropdownMenuItem asChild>
+    {#snippet children(props)}
+        <Link
+            class={props.class}
+            href={logout()}
+            as="button"
+            onclick={handleLogout(props.onClick)}
+            data-test="logout-button"
+        >
             <LogOut class="mr-2 h-4 w-4" />
-            <span>Log out</span>
-        </div>
-    </Link>
+            Log out
+        </Link>
+    {/snippet}
 </DropdownMenuItem>

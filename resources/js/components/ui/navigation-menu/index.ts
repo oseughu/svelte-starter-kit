@@ -1,28 +1,13 @@
-import Root from "./navigation-menu.svelte";
-import Content from "./navigation-menu-content.svelte";
-import Indicator from "./navigation-menu-indicator.svelte";
-import Item from "./navigation-menu-item.svelte";
-import Link from "./navigation-menu-link.svelte";
-import List from "./navigation-menu-list.svelte";
-import Trigger from "./navigation-menu-trigger.svelte";
-import Viewport from "./navigation-menu-viewport.svelte";
+import { cn } from '@/lib/utils';
 
-export {
-	Root,
-	Content,
-	Indicator,
-	Item,
-	Link,
-	List,
-	Trigger,
-	Viewport,
-	//
-	Root as NavigationMenuRoot,
-	Content as NavigationMenuContent,
-	Indicator as NavigationMenuIndicator,
-	Item as NavigationMenuItem,
-	Link as NavigationMenuLink,
-	List as NavigationMenuList,
-	Trigger as NavigationMenuTrigger,
-	Viewport as NavigationMenuViewport,
-};
+export { default as NavigationMenu } from './NavigationMenu.svelte';
+export { default as NavigationMenuItem } from './NavigationMenuItem.svelte';
+export { default as NavigationMenuLink } from './NavigationMenuLink.svelte';
+export { default as NavigationMenuList } from './NavigationMenuList.svelte';
+
+export function navigationMenuTriggerStyle(className = '') {
+    return cn(
+        'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground',
+        className,
+    );
+}

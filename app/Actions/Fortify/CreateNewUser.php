@@ -10,8 +10,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
-    use ProfileValidationRules;
+    use PasswordValidationRules, ProfileValidationRules;
 
     /**
      * Validate and create a newly registered user.

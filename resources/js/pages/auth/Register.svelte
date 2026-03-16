@@ -1,6 +1,8 @@
 <script lang="ts">
-    import RegisteredUserController from '@/actions/Laravel/Fortify/Http/Controllers/RegisteredUserController';
+    import { Form } from '@inertiajs/svelte';
+    import AppHead from '@/components/AppHead.svelte';
     import InputError from '@/components/InputError.svelte';
+    import PasswordInput from '@/components/PasswordInput.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
@@ -8,66 +10,88 @@
     import { Spinner } from '@/components/ui/spinner';
     import AuthBase from '@/layouts/AuthLayout.svelte';
     import { login } from '@/routes';
-    import type { BaseFormSnippetProps } from '@/types/forms';
-    import { Form } from '@inertiajs/svelte';
+    import { store } from '@/routes/register';
 </script>
 
-<svelte:head>
-    <title>Register</title>
-</svelte:head>
+<AppHead title="Register" />
 
-<AuthBase title="Create an account" description="Enter your details below to create your account">
+<AuthBase
+    title="Create an account"
+    description="Enter your details below to create your account"
+>
     <Form
-        {...RegisteredUserController.store.form()}
+        {...store.form()}
         resetOnSuccess={['password', 'password_confirmation']}
-        disableWhileProcessing
-        className="flex flex-col gap-6"
+        class="flex flex-col gap-6"
     >
-        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
+        {#snippet children({ errors, processing })}
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="name">Name</Label>
-                    <Input id="name" name="name" type="text" required autofocus tabindex={1} autocomplete="name" placeholder="Full name" />
+                    <Input
+                        id="name"
+                        type="text"
+                        required
+                        autocomplete="name"
+                        name="name"
+                        placeholder="Full name"
+                    />
                     <InputError message={errors.name} />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
-                    <Input id="email" name="email" type="email" required tabindex={2} autocomplete="email" placeholder="email@example.com" />
+                    <Input
+                        id="email"
+                        type="email"
+                        required
+                        autocomplete="email"
+                        name="email"
+                        placeholder="email@example.com"
+                    />
                     <InputError message={errors.email} />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password">Password</Label>
-                    <Input id="password" name="password" type="password" required tabindex={3} autocomplete="new-password" placeholder="Password" />
+                    <PasswordInput
+                        id="password"
+                        required
+                        autocomplete="new-password"
+                        name="password"
+                        placeholder="Password"
+                    />
                     <InputError message={errors.password} />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password_confirmation">Confirm password</Label>
-                    <Input
+                    <PasswordInput
                         id="password_confirmation"
-                        name="password_confirmation"
-                        type="password"
                         required
-                        tabindex={4}
                         autocomplete="new-password"
+                        name="password_confirmation"
                         placeholder="Confirm password"
                     />
                     <InputError message={errors.password_confirmation} />
                 </div>
 
-                <Button type="submit" class="mt-2 w-full" tabindex={5} disabled={processing}>
-                    {#if processing}
-                        <Spinner />
-                    {/if}
+                <Button
+                    type="submit"
+                    class="mt-2 w-full"
+                    disabled={processing}
+                    data-test="register-user-button"
+                >
+                    {#if processing}<Spinner />{/if}
                     Create account
                 </Button>
             </div>
 
             <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
-                <TextLink href={login()} class="underline underline-offset-4" tabindex={6}>Log in</TextLink>
+                <TextLink href={login()} class="underline underline-offset-4">
+                    Log in
+                </TextLink>
             </div>
         {/snippet}
     </Form>

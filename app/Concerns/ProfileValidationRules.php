@@ -8,9 +8,9 @@ use Illuminate\Validation\Rule;
 trait ProfileValidationRules
 {
     /**
-     * Get the validation rules for profile updates.
+     * Get the validation rules used to validate user profiles.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>>
      */
     protected function profileRules(?int $userId = null): array
     {
@@ -21,9 +21,9 @@ trait ProfileValidationRules
     }
 
     /**
-     * Get the validation rules for the name field.
+     * Get the validation rules used to validate user names.
      *
-     * @return array<int, string>
+     * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
      */
     protected function nameRules(): array
     {
@@ -31,19 +31,20 @@ trait ProfileValidationRules
     }
 
     /**
-     * Get the validation rules for the email field.
+     * Get the validation rules used to validate user emails.
      *
-     * @return array<int, \Illuminate\Contracts\Validation\Rule|string>
+     * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
      */
     protected function emailRules(?int $userId = null): array
     {
         return [
             'required',
             'string',
-            'lowercase',
             'email',
             'max:255',
-            Rule::unique(User::class)->ignore($userId),
+            $userId === null
+                ? Rule::unique(User::class)
+                : Rule::unique(User::class)->ignore($userId),
         ];
     }
 }
