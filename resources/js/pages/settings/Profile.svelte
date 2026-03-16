@@ -35,7 +35,8 @@
             />
 
             <Form
-                method="patch" action={route('profile.update')}
+                method="patch"
+                action={route('profile.update')}
                 class="space-y-6"
                 options={{ preserveScroll: true }}
             >

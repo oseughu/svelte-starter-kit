@@ -53,6 +53,7 @@ export function currentUrlState(): CurrentUrlState {
 
         try {
             const absoluteUrl = new URL(urlString);
+
             return comparePath(absoluteUrl.pathname);
         } catch {
             return false;

@@ -5,7 +5,7 @@
     import { Button } from '@/components/ui/button';
     import { Separator } from '@/components/ui/separator';
     import { currentUrlState } from '@/lib/currentUrl';
-        import type { NavItem } from '@/types';
+    import type { NavItem } from '@/types';
 
     let {
         children,
@@ -39,7 +39,7 @@
                 class="flex flex-col space-y-1 space-x-0"
                 aria-label="Settings"
             >
-                {#each sidebarNavItems as item ((item.href))}
+                {#each sidebarNavItems as item (item.href)}
                     <Button
                         variant="ghost"
                         class="w-full justify-start {isCurrentOrParentUrl(
@@ -51,7 +51,7 @@
                         asChild
                     >
                         {#snippet children(props)}
-                            <Link href={(item.href)} class={props.class}>
+                            <Link href={item.href} class={props.class}>
                                 {item.title}
                             </Link>
                         {/snippet}
