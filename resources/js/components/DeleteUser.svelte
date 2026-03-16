@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Form } from '@inertiajs/svelte';
-    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
     import Heading from '@/components/Heading.svelte';
     import InputError from '@/components/InputError.svelte';
     import PasswordInput from '@/components/PasswordInput.svelte';
@@ -15,6 +14,7 @@
         DialogTrigger,
     } from '@/components/ui/dialog';
     import { Label } from '@/components/ui/label';
+    import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 </script>
 
 <div class="space-y-6">
