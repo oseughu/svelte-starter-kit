@@ -9,7 +9,7 @@
         DropdownMenuSeparator,
     } from '@/components/ui/dropdown-menu';
     import UserInfo from '@/components/UserInfo.svelte';
-        import type { User } from '@/types';
+    import type { User } from '@/types';
 
     let {
         user,
@@ -36,7 +36,7 @@
         {#snippet children(props)}
             <Link
                 class={props.class}
-                href={(route('profile.edit'))}
+                href={route('profile.edit')}
                 prefetch
                 onclick={props.onClick}
             >

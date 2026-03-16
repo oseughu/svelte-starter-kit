@@ -44,7 +44,8 @@
             />
 
             <Form
-                method="patch" action={route('profile.update')}
+                method="patch"
+                action={route('profile.update')}
                 class="space-y-6"
                 options={{ preserveScroll: true }}
             >
@@ -82,7 +83,10 @@
                         <div>
                             <p class="-mt-4 text-sm text-muted-foreground">
                                 Your email address is unverified.
-                                <TextLink href={route('verification.send')} as="button">
+                                <TextLink
+                                    href={route('verification.send')}
+                                    as="button"
+                                >
                                     Click here to resend the verification email.
                                 </TextLink>
                             </p>

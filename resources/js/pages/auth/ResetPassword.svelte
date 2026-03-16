@@ -24,7 +24,8 @@
     description="Please enter your new password below"
 >
     <Form
-        method="post" action={route('password.update')}
+        method="post"
+        action={route('password.update')}
         transform={(data) => ({ ...data, token, email })}
         resetOnSuccess={['password', 'password_confirmation']}
     >

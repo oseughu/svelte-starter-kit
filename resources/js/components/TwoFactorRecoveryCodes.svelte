@@ -67,7 +67,8 @@
 
             {#if isRecoveryCodesVisible && twoFactorAuth.state.recoveryCodesList.length}
                 <Form
-                    method="post" action={route('two-factor.regenerate-recovery-codes')}
+                    method="post"
+                    action={route('two-factor.regenerate-recovery-codes')}
                     options={{ preserveScroll: true }}
                     onSuccess={() => twoFactorAuth.fetchRecoveryCodes()}
                 >
