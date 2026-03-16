@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9569af8bb8f02e895f641feed532dc2",
+    "content-hash": "36b85b5b5f46b3dc70f5930849668bce",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1700,29 +1700,29 @@
         },
         {
             "name": "laravel/wayfinder",
-            "version": "v0.1.13",
+            "version": "v0.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/wayfinder.git",
-                "reference": "cc32fedd4744cdb64d018974ce92296e88fcdd0f"
+                "reference": "57bbd154ae69b11513d459bb97a0db19a8b7c871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/wayfinder/zipball/cc32fedd4744cdb64d018974ce92296e88fcdd0f",
-                "reference": "cc32fedd4744cdb64d018974ce92296e88fcdd0f",
+                "url": "https://api.github.com/repos/laravel/wayfinder/zipball/57bbd154ae69b11513d459bb97a0db19a8b7c871",
+                "reference": "57bbd154ae69b11513d459bb97a0db19a8b7c871",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^11.0|^12.0",
-                "illuminate/filesystem": "^11.0|^12.0",
-                "illuminate/routing": "^11.0|^12.0",
-                "illuminate/support": "^11.0|^12.0",
+                "illuminate/console": "^11.0|^12.0|^13.0",
+                "illuminate/filesystem": "^11.0|^12.0|^13.0",
+                "illuminate/routing": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
                 "php": "^8.2",
                 "phpstan/phpdoc-parser": "^2.3"
             },
             "require-dev": {
                 "laravel/pint": "^1.21",
-                "orchestra/testbench": "^10.1 | ^9.0"
+                "orchestra/testbench": "^11.0|^10.1|^9.0"
             },
             "type": "library",
             "extra": {
@@ -1759,7 +1759,7 @@
                 "issues": "https://github.com/laravel/wayfinder/issues",
                 "source": "https://github.com/laravel/wayfinder"
             },
-            "time": "2026-01-12T19:57:57+00:00"
+            "time": "2026-02-24T12:51:07+00:00"
         },
         {
             "name": "league/commonmark",

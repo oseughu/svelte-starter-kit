@@ -10,7 +10,8 @@
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
         "lint:check": "eslint .",
-        "types:check": "svelte-check --tsconfig ./tsconfig.json"
+        "types:generate": "php artisan wayfinder:generate --with-form",
+        "types:check": "npm run types:generate && svelte-check --tsconfig ./tsconfig.json"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.2",
