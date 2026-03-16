@@ -1,26 +1,26 @@
 <script lang="ts">
+    import { Form } from '@inertiajs/svelte';
+    import AppHead from '@/components/AppHead.svelte';
     import InputError from '@/components/InputError.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
+    import { Spinner } from '@/components/ui/spinner';
     import AuthLayout from '@/layouts/AuthLayout.svelte';
-    import type { BaseFormSnippetProps } from '@/types/forms';
-    import { Form } from '@inertiajs/svelte';
-    import { LoaderCircle } from 'lucide-svelte';
-
-    interface Props {
+    let {
+        status = '',
+    }: {
         status?: string;
-    }
-
-    let { status }: Props = $props();
+    } = $props();
 </script>
 
-<svelte:head>
-    <title>Forgot Password</title>
-</svelte:head>
+<AppHead title="Forgot password" />
 
-<AuthLayout title="Forgot password" description="Enter your email to receive a password reset link">
+<AuthLayout
+    title="Forgot password"
+    description="Enter your email to receive a password reset link"
+>
     {#if status}
         <div class="mb-4 text-center text-sm font-medium text-green-600">
             {status}
@@ -29,18 +29,27 @@
 
     <div class="space-y-6">
         <Form method="post" action={route('password.email')}>
-            {#snippet children({ errors, processing }: BaseFormSnippetProps)}
+            {#snippet children({ errors, processing })}
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
-                    <Input id="email" type="email" name="email" autocomplete="off" autofocus placeholder="email@example.com" />
+                    <Input
+                        id="email"
+                        type="email"
+                        name="email"
+                        autocomplete="off"
+                        placeholder="email@example.com"
+                    />
                     <InputError message={errors.email} />
                 </div>
 
                 <div class="my-6 flex items-center justify-start">
-                    <Button type="submit" class="w-full" disabled={processing}>
-                        {#if processing}
-                            <LoaderCircle class="h-4 w-4 animate-spin" />
-                        {/if}
+                    <Button
+                        type="submit"
+                        class="w-full"
+                        disabled={processing}
+                        data-test="email-password-reset-link-button"
+                    >
+                        {#if processing}<Spinner />{/if}
                         Email password reset link
                     </Button>
                 </div>

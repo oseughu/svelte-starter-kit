@@ -1,5 +1,8 @@
 <script lang="ts">
+    import { Form } from '@inertiajs/svelte';
+    import AppHead from '@/components/AppHead.svelte';
     import InputError from '@/components/InputError.svelte';
+    import PasswordInput from '@/components/PasswordInput.svelte';
     import TextLink from '@/components/TextLink.svelte';
     import { Button } from '@/components/ui/button';
     import { Checkbox } from '@/components/ui/checkbox';
@@ -7,41 +10,43 @@
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
     import AuthBase from '@/layouts/AuthLayout.svelte';
-    import type { BaseFormSnippetProps } from '@/types/forms';
-    import { Form } from '@inertiajs/svelte';
-
-    interface Props {
+    let {
+        status = '',
+        canResetPassword,
+        canRegister,
+    }: {
         status?: string;
         canResetPassword: boolean;
         canRegister: boolean;
-    }
-
-    let { status, canResetPassword, canRegister }: Props = $props();
+    } = $props();
 </script>
 
-<svelte:head>
-    <title>Login</title>
-</svelte:head>
+<AppHead title="Log in" />
 
-<AuthBase title="Log in to your account" description="Enter your email and password below to log in">
+<AuthBase
+    title="Log in to your account"
+    description="Enter your email and password below to log in"
+>
     {#if status}
         <div class="mb-4 text-center text-sm font-medium text-green-600">
             {status}
         </div>
     {/if}
 
-    <Form method="post" action={route('login')} resetOnSuccess={['password']} class="flex flex-col gap-6">
-        {#snippet children({ errors, processing }: BaseFormSnippetProps)}
+    <Form
+        method="post" action={route('login')}
+        resetOnSuccess={['password']}
+        class="flex flex-col gap-6"
+    >
+        {#snippet children({ errors, processing })}
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
                     <Input
                         id="email"
-                        name="email"
                         type="email"
+                        name="email"
                         required
-                        autofocus
-                        tabindex={1}
                         autocomplete="email"
                         placeholder="email@example.com"
                     />
@@ -52,15 +57,15 @@
                     <div class="flex items-center justify-between">
                         <Label for="password">Password</Label>
                         {#if canResetPassword}
-                            <TextLink href={route('password.request')} class="text-sm" tabindex={5}>Forgot password?</TextLink>
+                            <TextLink href={route('password.request')} class="text-sm">
+                                Forgot password?
+                            </TextLink>
                         {/if}
                     </div>
-                    <Input
+                    <PasswordInput
                         id="password"
                         name="password"
-                        type="password"
                         required
-                        tabindex={2}
                         autocomplete="current-password"
                         placeholder="Password"
                     />
@@ -69,15 +74,18 @@
 
                 <div class="flex items-center justify-between">
                     <Label for="remember" class="flex items-center space-x-3">
-                        <Checkbox id="remember" name="remember" tabindex={3} />
+                        <Checkbox id="remember" name="remember" />
                         <span>Remember me</span>
                     </Label>
                 </div>
 
-                <Button type="submit" class="mt-4 w-full" tabindex={4} disabled={processing}>
-                    {#if processing}
-                        <Spinner />
-                    {/if}
+                <Button
+                    type="submit"
+                    class="mt-4 w-full"
+                    disabled={processing}
+                    data-test="login-button"
+                >
+                    {#if processing}<Spinner />{/if}
                     Log in
                 </Button>
             </div>
@@ -85,7 +93,7 @@
             {#if canRegister}
                 <div class="text-center text-sm text-muted-foreground">
                     Don't have an account?
-                    <TextLink href={route('register')} tabindex={5}>Sign up</TextLink>
+                    <TextLink href={route('register')}>Sign up</TextLink>
                 </div>
             {/if}
         {/snippet}
