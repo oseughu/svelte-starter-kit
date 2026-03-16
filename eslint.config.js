@@ -1,56 +1,124 @@
 import js from '@eslint/js';
-import prettier from 'eslint-config-prettier';
+import stylistic from '@stylistic/eslint-plugin';
+import prettier from 'eslint-config-prettier/flat';
+import importPlugin from 'eslint-plugin-import';
 import svelte from 'eslint-plugin-svelte';
-import globals from 'globals';
 import ts from 'typescript-eslint';
+
+const controlStatements = [
+    'if',
+    'return',
+    'for',
+    'while',
+    'do',
+    'switch',
+    'try',
+    'throw',
+];
+const paddingAroundControl = [
+    ...controlStatements.flatMap((stmt) => [
+        { blankLine: 'always', prev: '*', next: stmt },
+        { blankLine: 'always', prev: stmt, next: '*' },
+    ]),
+];
 
 export default ts.config(
     js.configs.recommended,
     ...ts.configs.recommended,
-    ...svelte.configs.recommended,
+    ...svelte.configs['flat/recommended'],
     {
-        languageOptions: {
-            globals: {
-                ...globals.browser,
-                ...globals.node,
-                route: 'readonly',
-                Laravel: 'readonly',
-            },
-        },
-    },
-    {
-        files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
-        // See more details at: https://typescript-eslint.io/packages/parser/
+        files: ['**/*.svelte'],
         languageOptions: {
             parserOptions: {
-                projectService: true,
-                extraFileExtensions: ['.svelte', '.svelte.ts', '.svelte.js'], // Add support for additional file extensions, such as .svelte
                 parser: ts.parser,
-                // Specify a parser for each language, if needed:
-                // parser: {
-                //   ts: ts.parser,
-                //   js: espree,    // Use espree for .js files (add: import espree from 'espree')
-                //   typescript: ts.parser
-                // },
-
-                // We recommend importing and specifying svelte.config.js.
-                // By doing so, some rules in eslint-plugin-svelte will automatically read the configuration and adjust their behavior accordingly.
-                // While certain Svelte settings may be statically loaded from svelte.config.js even if you don’t specify it,
-                // explicitly specifying it ensures better compatibility and functionality.
-                // svelteConfig,
             },
         },
     },
     {
-        rules: {
-            '@typescript-eslint/no-explicit-any': 'off',
-            'svelte/infinite-reactive-loop': 'error',
-            'svelte/no-at-html-tags': 'error',
-            'svelte/no-target-blank': 'error',
+        files: ['**/*.svelte.ts'],
+        languageOptions: {
+            parser: ts.parser,
         },
     },
     {
-        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js', 'resources/js/components/ui/*'],
+        plugins: {
+            import: importPlugin,
+        },
+        settings: {
+            'import/resolver': {
+                typescript: {
+                    alwaysTryTypes: true,
+                    project: './tsconfig.json',
+                },
+                node: true,
+            },
+        },
+        rules: {
+            'no-undef': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                {
+                    prefer: 'type-imports',
+                    fixStyle: 'separate-type-imports',
+                },
+            ],
+            'import/order': [
+                'error',
+                {
+                    groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+                    alphabetize: {
+                        order: 'asc',
+                        caseInsensitive: true,
+                    },
+                },
+            ],
+            'import/consistent-type-specifier-style': [
+                'error',
+                'prefer-top-level',
+            ],
+        },
     },
-    prettier,
+    {
+        plugins: {
+            '@stylistic': stylistic,
+        },
+        rules: {
+            '@stylistic/padding-line-between-statements': [
+                'error',
+                ...paddingAroundControl,
+            ],
+        },
+    },
+    {
+        ignores: [
+            'vendor',
+            'node_modules',
+            'public',
+            'bootstrap/ssr',
+            'tailwind.config.js',
+            'vite.config.ts',
+            'resources/js/actions/**',
+            'resources/js/components/ui/*',
+            'resources/js/routes/**',
+            'resources/js/wayfinder/**',
+        ],
+    },
+    prettier, // Turn off all rules that might conflict with Prettier
+    {
+        plugins: {
+            '@stylistic': stylistic,
+        },
+        rules: {
+            curly: ['error', 'all'],
+            '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
+        },
+    },
 );

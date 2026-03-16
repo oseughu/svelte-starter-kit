@@ -1,12 +1,14 @@
 <script lang="ts">
     import { cn } from '@/lib/utils';
-    import { Loader2 } from 'lucide-svelte';
+    import LoaderCircle from 'lucide-svelte/icons/loader-circle';
 
-    interface Props {
+    let {
+        class: className = '',
+        ...rest
+    }: {
         class?: string;
-    }
-
-    let { class: className }: Props = $props();
+        [key: string]: unknown;
+    } = $props();
 </script>
 
-<Loader2 role="status" aria-label="Loading" class={cn('size-4 animate-spin', className)} />
+<LoaderCircle class={cn('animate-spin', className)} {...rest} />

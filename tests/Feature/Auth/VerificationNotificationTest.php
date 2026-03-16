@@ -3,28 +3,46 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
+use Laravel\Fortify\Features;
 use Tests\TestCase;
 
 class VerificationNotificationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_email_verification_notification_can_be_sent(): void
+    protected function setUp(): void
     {
-        $user = User::factory()->unverified()->create();
+        parent::setUp();
 
-        $response = $this->actingAs($user)->post(route('verification.send'));
-
-        $response->assertSessionHas('status', 'verification-link-sent');
+        $this->skipUnlessFortifyFeature(Features::emailVerification());
     }
 
-    public function test_verified_user_is_redirected_when_requesting_verification_link(): void
+    public function test_sends_verification_notification(): void
     {
+        Notification::fake();
+
+        $user = User::factory()->unverified()->create();
+
+        $this->actingAs($user)
+            ->post(route('verification.send'))
+            ->assertRedirect(route('home'));
+
+        Notification::assertSentTo($user, VerifyEmail::class);
+    }
+
+    public function test_does_not_send_verification_notification_if_email_is_verified(): void
+    {
+        Notification::fake();
+
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post(route('verification.send'));
+        $this->actingAs($user)
+            ->post(route('verification.send'))
+            ->assertRedirect(route('dashboard', absolute: false));
 
-        $response->assertRedirect(route('dashboard', absolute: false));
+        Notification::assertNothingSent();
     }
 }
