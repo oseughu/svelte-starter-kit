@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Link, router } from '@inertiajs/svelte';
-    import LogOut from 'lucide-svelte/icons/log-out';
-    import Settings from 'lucide-svelte/icons/settings';
+    import { LogOut, Settings } from 'lucide-svelte';
     import {
         DropdownMenuGroup,
         DropdownMenuItem,
@@ -11,18 +10,15 @@
     import UserInfo from '@/components/UserInfo.svelte';
     import type { User } from '@/types';
 
-    let {
-        user,
-    }: {
+    interface Props {
         user: User;
-    } = $props();
-
-    function handleLogout(propsOnClick?: (event: MouseEvent) => void) {
-        return (event: MouseEvent) => {
-            propsOnClick?.(event);
-            router.flushAll();
-        };
     }
+
+    let { user }: Props = $props();
+
+    const handleLogout = () => {
+        router.flushAll();
+    };
 </script>
 
 <DropdownMenuLabel class="p-0 font-normal">
@@ -32,32 +28,32 @@
 </DropdownMenuLabel>
 <DropdownMenuSeparator />
 <DropdownMenuGroup>
-    <DropdownMenuItem asChild>
-        {#snippet children(props)}
-            <Link
-                class={props.class}
-                href={route('profile.edit')}
-                prefetch
-                onclick={props.onClick}
-            >
+    <DropdownMenuItem>
+        <Link
+            class="block w-full"
+            href={route('profile.edit')}
+            prefetch
+            as="button"
+        >
+            <div class="flex items-center">
                 <Settings class="mr-2 h-4 w-4" />
-                Settings
-            </Link>
-        {/snippet}
+                <span>Settings</span>
+            </div>
+        </Link>
     </DropdownMenuItem>
 </DropdownMenuGroup>
 <DropdownMenuSeparator />
-<DropdownMenuItem asChild>
-    {#snippet children(props)}
-        <Link
-            class={props.class}
-            href={route('logout')}
-            as="button"
-            onclick={handleLogout(props.onClick)}
-            data-test="logout-button"
-        >
+<DropdownMenuItem>
+    <Link
+        class="block w-full"
+        method="post"
+        onclick={handleLogout}
+        href={route('logout')}
+        as="button"
+    >
+        <div class="flex items-center">
             <LogOut class="mr-2 h-4 w-4" />
-            Log out
-        </Link>
-    {/snippet}
+            <span>Log out</span>
+        </div>
+    </Link>
 </DropdownMenuItem>

@@ -15,6 +15,7 @@
         CardTitle,
     } from '@/components/ui/card';
     import { twoFactorAuthState } from '@/lib/twoFactorAuth.svelte';
+
     const twoFactorAuth = twoFactorAuthState();
     let isRecoveryCodesVisible = $state(false);
     let recoveryCodeSectionRef = $state<HTMLDivElement | undefined>();
