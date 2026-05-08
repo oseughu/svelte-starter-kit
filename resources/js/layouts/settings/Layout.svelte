@@ -4,7 +4,7 @@
     import Heading from '@/components/Heading.svelte';
     import { Button } from '@/components/ui/button';
     import { Separator } from '@/components/ui/separator';
-    import { currentUrlState } from '@/lib/currentUrl';
+    import { currentUrlState } from '@/lib/currentUrl.svelte';
     import type { NavItem } from '@/types';
 
     let {
@@ -28,7 +28,7 @@
         },
     ];
 
-    const { currentUrl, isCurrentOrParentUrl } = currentUrlState();
+    const url = currentUrlState();
 </script>
 
 <div class="px-4 py-6">
@@ -44,22 +44,19 @@
                 aria-label="Settings"
             >
                 {#each sidebarNavItems as item (item.href)}
-                    <Button
-                        variant="ghost"
-                        class="w-full justify-start {isCurrentOrParentUrl(
-                            item.href,
-                            $currentUrl,
-                        )
-                            ? 'bg-muted'
-                            : ''}"
-                        asChild
-                    >
-                        {#snippet children(props)}
-                            <Link href={item.href} class={props.class}>
-                                {item.title}
-                            </Link>
-                        {/snippet}
-                    </Button>
+                    <Link href={item.href}>
+                        <Button
+                            variant="ghost"
+                            class="w-full justify-start {url.isCurrentUrl(
+                                item.href,
+                                url.currentUrl,
+                            )
+                                ? 'bg-muted'
+                                : ''}"
+                        >
+                            {item.title}
+                        </Button>
+                    </Link>
                 {/each}
             </nav>
         </aside>

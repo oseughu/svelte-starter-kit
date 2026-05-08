@@ -2,6 +2,7 @@
     import { Link, page } from '@inertiajs/svelte';
     import type { Snippet } from 'svelte';
     import AppLogoIcon from '@/components/AppLogoIcon.svelte';
+
     let {
         title = '',
         description = '',
@@ -12,7 +13,7 @@
         children?: Snippet;
     } = $props();
 
-    const name = $derived($page.props.name);
+    const name = $derived(page.props.name);
 </script>
 
 <div

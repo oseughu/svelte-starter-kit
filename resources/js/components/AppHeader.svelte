@@ -39,8 +39,9 @@
         TooltipTrigger,
     } from '@/components/ui/tooltip';
     import UserMenuContent from '@/components/UserMenuContent.svelte';
-    import { currentUrlState } from '@/lib/currentUrl';
+    import { currentUrlState } from '@/lib/currentUrl.svelte';
     import { getInitials } from '@/lib/initials';
+    import { toUrl } from '@/lib/utils';
     import type { BreadcrumbItem, NavItem } from '@/types';
 
     let {
@@ -49,8 +50,8 @@
         breadcrumbs?: BreadcrumbItem[];
     } = $props();
 
-    const auth = $derived($page.props.auth);
-    const { currentUrl, isCurrentUrl, whenCurrentUrl } = currentUrlState();
+    const auth = $derived(page.props.auth);
+    const url = currentUrlState();
 
     const activeItemStyles =
         'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
@@ -107,12 +108,12 @@
                             class="flex h-full flex-1 flex-col justify-between space-y-4 pt-6 pb-10"
                         >
                             <nav class="-mx-3 space-y-1">
-                                {#each mainNavItems as item (item.href)}
+                                {#each mainNavItems as item (toUrl(item.href))}
                                     <Link
-                                        href={item.href}
-                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {whenCurrentUrl(
+                                        href={toUrl(item.href)}
+                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {url.whenCurrentUrl(
                                             item.href,
-                                            $currentUrl,
+                                            url.currentUrl,
                                             activeItemStyles,
                                             '',
                                         ) ?? ''}"
@@ -125,9 +126,9 @@
                                 {/each}
                             </nav>
                             <div class="flex flex-col space-y-4">
-                                {#each rightNavItems as item (item.href)}
+                                {#each rightNavItems as item (toUrl(item.href))}
                                     <a
-                                        href={item.href}
+                                        href={toUrl(item.href)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
@@ -154,25 +155,25 @@
                     <NavigationMenuList
                         class="flex h-full items-stretch space-x-2"
                     >
-                        {#each mainNavItems as item (item.href)}
+                        {#each mainNavItems as item (toUrl(item.href))}
                             <NavigationMenuItem
                                 class="relative flex h-full items-center"
                             >
                                 <Link
-                                    class="{navigationMenuTriggerStyle()} {whenCurrentUrl(
+                                    class="{navigationMenuTriggerStyle()} {url.whenCurrentUrl(
                                         item.href,
-                                        $currentUrl,
+                                        url.currentUrl,
                                         activeItemStyles,
                                         '',
                                     ) ?? ''} h-9 cursor-pointer px-4"
-                                    href={item.href}
+                                    href={toUrl(item.href)}
                                 >
                                     {#if item.icon}
                                         <item.icon class="mr-2 h-4 w-4" />
                                     {/if}
                                     {item.title}
                                 </Link>
-                                {#if isCurrentUrl(item.href, $currentUrl)}
+                                {#if url.isCurrentUrl(item.href, url.currentUrl)}
                                     <div
                                         class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
                                     ></div>
@@ -196,13 +197,13 @@
                     </Button>
 
                     <div class="hidden space-x-1 lg:flex">
-                        {#each rightNavItems as item (item.href)}
+                        {#each rightNavItems as item (toUrl(item.href))}
                             <TooltipProvider delayDuration={0}>
                                 <Tooltip>
                                     <TooltipTrigger>
                                         {#snippet child({ props })}
                                             <a
-                                                href={item.href}
+                                                href={toUrl(item.href)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 {...props}
@@ -240,23 +241,25 @@
                                 <Avatar
                                     class="size-8 overflow-hidden rounded-full"
                                 >
-                                    {#if auth.user.avatar}
+                                    {#if auth.user?.avatar}
                                         <AvatarImage
                                             src={auth.user.avatar}
-                                            alt={auth.user.name}
+                                            alt={auth.user?.name}
                                         />
                                     {/if}
                                     <AvatarFallback
                                         class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
                                     >
-                                        {getInitials(auth.user?.name)}
+                                        {getInitials(auth.user?.name ?? '')}
                                     </AvatarFallback>
                                 </Avatar>
                             </Button>
                         {/snippet}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" class="w-56">
-                        <UserMenuContent user={auth.user} />
+                        {#if auth.user}
+                            <UserMenuContent user={auth.user} />
+                        {/if}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
