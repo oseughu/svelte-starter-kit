@@ -39,7 +39,7 @@
         TooltipTrigger,
     } from '@/components/ui/tooltip';
     import UserMenuContent from '@/components/UserMenuContent.svelte';
-    import { currentUrlState } from '@/lib/currentUrl';
+    import { currentUrlState } from '@/lib/currentUrl.svelte';
     import { getInitials } from '@/lib/initials';
     import { toUrl } from '@/lib/utils';
     import { dashboard } from '@/routes';
@@ -51,8 +51,8 @@
         breadcrumbs?: BreadcrumbItem[];
     } = $props();
 
-    const auth = $derived($page.props.auth);
-    const { currentUrl, isCurrentUrl, whenCurrentUrl } = currentUrlState();
+    const auth = $derived(page.props.auth);
+    const url = currentUrlState();
 
     const activeItemStyles =
         'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
@@ -112,9 +112,9 @@
                                 {#each mainNavItems as item (toUrl(item.href))}
                                     <Link
                                         href={toUrl(item.href)}
-                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {whenCurrentUrl(
+                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {url.whenCurrentUrl(
                                             item.href,
-                                            $currentUrl,
+                                            url.currentUrl,
                                             activeItemStyles,
                                             '',
                                         ) ?? ''}"
@@ -161,9 +161,9 @@
                                 class="relative flex h-full items-center"
                             >
                                 <Link
-                                    class="{navigationMenuTriggerStyle()} {whenCurrentUrl(
+                                    class="{navigationMenuTriggerStyle()} {url.whenCurrentUrl(
                                         item.href,
-                                        $currentUrl,
+                                        url.currentUrl,
                                         activeItemStyles,
                                         '',
                                     ) ?? ''} h-9 cursor-pointer px-4"
@@ -174,7 +174,7 @@
                                     {/if}
                                     {item.title}
                                 </Link>
-                                {#if isCurrentUrl(item.href, $currentUrl)}
+                                {#if url.isCurrentUrl(item.href, url.currentUrl)}
                                     <div
                                         class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
                                     ></div>
@@ -242,23 +242,25 @@
                                 <Avatar
                                     class="size-8 overflow-hidden rounded-full"
                                 >
-                                    {#if auth.user.avatar}
+                                    {#if auth.user?.avatar}
                                         <AvatarImage
                                             src={auth.user.avatar}
-                                            alt={auth.user.name}
+                                            alt={auth.user?.name}
                                         />
                                     {/if}
                                     <AvatarFallback
                                         class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
                                     >
-                                        {getInitials(auth.user?.name)}
+                                        {getInitials(auth.user?.name ?? '')}
                                     </AvatarFallback>
                                 </Avatar>
                             </Button>
                         {/snippet}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" class="w-56">
-                        <UserMenuContent user={auth.user} />
+                        {#if auth.user}
+                            <UserMenuContent user={auth.user} />
+                        {/if}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>

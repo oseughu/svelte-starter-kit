@@ -14,7 +14,7 @@
         children?: Snippet;
     } = $props();
 
-    const name = $derived($page.props.name);
+    const name = $derived(page.props.name);
 </script>
 
 <div

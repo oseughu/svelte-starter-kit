@@ -1,3 +1,4 @@
+import { useHttp } from '@inertiajs/svelte';
 import { qrCode, recoveryCodes, secretKey } from '@/routes/two-factor';
 
 type TwoFactorAuthState = {
@@ -19,34 +20,6 @@ export type TwoFactorAuthStateApi = {
     fetchRecoveryCodes: () => Promise<void>;
 };
 
-const fetchJson = async <T>(url: string): Promise<T> => {
-    const response = await fetch(url, {
-        credentials: 'same-origin',
-        headers: {
-            Accept: 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.status}`);
-    }
-
-    const contentType = response.headers.get('content-type') || '';
-
-    if (contentType.includes('application/json')) {
-        return response.json();
-    }
-
-    const text = await response.text();
-
-    try {
-        return JSON.parse(text) as T;
-    } catch {
-        return text as T;
-    }
-};
-
 const state = $state<TwoFactorAuthState>({
     qrCodeSvg: null,
     manualSetupKey: null,
@@ -58,11 +31,14 @@ const hasSetupData = (): boolean =>
     state.qrCodeSvg !== null && state.manualSetupKey !== null;
 
 export function twoFactorAuthState(): TwoFactorAuthStateApi {
+    const http = useHttp();
+
     const fetchQrCode = async (): Promise<void> => {
         try {
-            const { svg } = await fetchJson<{ svg: string; url: string }>(
-                qrCode.url(),
-            );
+            const { svg } = (await http.submit(qrCode())) as {
+                svg: string;
+                url: string;
+            };
 
             state.qrCodeSvg = svg;
         } catch {
@@ -73,18 +49,9 @@ export function twoFactorAuthState(): TwoFactorAuthStateApi {
 
     const fetchSetupKey = async (): Promise<void> => {
         try {
-            const payload = await fetchJson<
-                { secretKey?: string; secret_key?: string } | string
-            >(secretKey.url());
-
-            const key =
-                typeof payload === 'string'
-                    ? payload
-                    : (payload.secretKey ?? payload.secret_key ?? null);
-
-            if (!key) {
-                throw new Error('Setup key not found in response');
-            }
+            const { secretKey: key } = (await http.submit(secretKey())) as {
+                secretKey: string;
+            };
 
             state.manualSetupKey = key;
         } catch {
@@ -112,9 +79,9 @@ export function twoFactorAuthState(): TwoFactorAuthStateApi {
     const fetchRecoveryCodes = async (): Promise<void> => {
         try {
             clearErrors();
-            state.recoveryCodesList = await fetchJson<string[]>(
-                recoveryCodes.url(),
-            );
+            state.recoveryCodesList = (await http.submit(
+                recoveryCodes(),
+            )) as string[];
         } catch {
             state.errors = [...state.errors, 'Failed to fetch recovery codes'];
             state.recoveryCodesList = [];
