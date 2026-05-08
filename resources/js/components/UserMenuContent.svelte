@@ -20,9 +20,9 @@
         user: User;
     } = $props();
 
-    function handleLogout(propsOnClick?: (event: MouseEvent) => void) {
-        return (event: MouseEvent) => {
-            propsOnClick?.(event);
+    function handleLogout(propsOnClick?: () => void) {
+        return () => {
+            propsOnClick?.();
             router.flushAll();
         };
     }

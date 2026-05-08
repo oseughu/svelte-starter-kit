@@ -9,21 +9,22 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "inertiajs/inertia-laravel": "^2.0.10",
-        "laravel/fortify": "^1.32",
-        "laravel/framework": "^12.34.0",
-        "laravel/tinker": "^2.10.1",
-        "laravel/wayfinder": "^0.1.12"
+        "php": "^8.3",
+        "inertiajs/inertia-laravel": "^3.0",
+        "laravel/fortify": "^1.34",
+        "laravel/framework": "^13.7",
+        "laravel/tinker": "^3.0",
+        "laravel/wayfinder": "^0.1.14"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.24.1",
-        "laravel/pail": "^1.2.3",
-        "laravel/pint": "^1.25.1",
-        "laravel/sail": "^1.46.0",
-        "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.8.2",
-        "phpunit/phpunit": "^11.5.42"
+        "fakerphp/faker": "^1.24",
+        "laravel/pail": "^1.2.5",
+        "laravel/pao": "^1.0.6",
+        "laravel/pint": "^1.27",
+        "laravel/sail": "^1.53",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.9.3",
+        "phpunit/phpunit": "^12.5.23"
     },
     "autoload": {
         "psr-4": {
@@ -49,11 +50,6 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
-        ],
-        "dev:ssr": [
-            "npm run build:ssr",
-            "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr\" --names=server,queue,logs,ssr --kill-others"
         ],
         "lint": [
             "pint --parallel"
@@ -106,6 +102,5 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability": "stable"
 }

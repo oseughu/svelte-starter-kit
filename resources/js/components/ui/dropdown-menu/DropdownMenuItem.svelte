@@ -6,7 +6,7 @@
 
     type AsChildProps = {
         class?: string;
-        onClick?: (event: MouseEvent) => void;
+        onClick?: () => void;
         [key: string]: any;
     };
 

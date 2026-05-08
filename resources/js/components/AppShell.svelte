@@ -14,7 +14,7 @@
         children?: Snippet;
     } = $props();
 
-    const isOpen = $derived($page.props.sidebarOpen);
+    const isOpen = $derived(page.props.sidebarOpen);
 </script>
 
 {#if variant === 'header'}
