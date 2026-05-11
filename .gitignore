@@ -11,6 +11,8 @@
 /resources/js/routes
 /resources/js/wayfinder
 /vendor
+composer.lock
+package-lock.json
 .DS_Store
 .env
 .env.backup
