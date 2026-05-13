@@ -1,9 +1,9 @@
 <script lang="ts">
     import { Form } from '@inertiajs/svelte';
-    import Eye from 'lucide-svelte/icons/eye';
-    import EyeOff from 'lucide-svelte/icons/eye-off';
-    import LockKeyhole from 'lucide-svelte/icons/lock-keyhole';
-    import RefreshCw from 'lucide-svelte/icons/refresh-cw';
+    import Eye from '@lucide/svelte/icons/eye';
+    import EyeOff from '@lucide/svelte/icons/eye-off';
+    import LockKeyhole from '@lucide/svelte/icons/lock-keyhole';
+    import RefreshCw from '@lucide/svelte/icons/refresh-cw';
     import { onMount, tick } from 'svelte';
     import AlertError from '@/components/AlertError.svelte';
     import { Button } from '@/components/ui/button';

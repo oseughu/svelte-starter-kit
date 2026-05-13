@@ -1,12 +1,9 @@
 {
-    "$schema": "https://next.shadcn-svelte.com/schema.json",
-    "style": "new-york-v4",
+    "$schema": "https://shadcn-svelte.com/schema.json",
+    "style": "nova",
     "tailwind": {
-        "config": "tailwind.config.js",
         "css": "resources/css/app.css",
-        "baseColor": "neutral",
-        "cssVariables": true,
-        "prefix": ""
+        "baseColor": "neutral"
     },
     "aliases": {
         "components": "@/components",

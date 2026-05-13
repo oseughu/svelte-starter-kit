@@ -11,7 +11,7 @@
 
 <script lang="ts">
     import { Form } from '@inertiajs/svelte';
-    import ShieldCheck from 'lucide-svelte/icons/shield-check';
+    import ShieldCheck from '@lucide/svelte/icons/shield-check';
     import { onDestroy } from 'svelte';
     import AppHead from '@/components/AppHead.svelte';
     import Heading from '@/components/Heading.svelte';
