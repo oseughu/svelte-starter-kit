@@ -1,18 +1,11 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from 'bits-ui';
-
-type SelectProps = Omit<SelectPrimitive.RootProps, 'type' | 'value'> & {
-	type?: 'single';
-	value?: string;
-	onValueChange?: (value: string) => void;
-};
+	import { Select as SelectPrimitive } from "bits-ui";
 
 	let {
 		open = $bindable(false),
-		value = $bindable(''),
-		type = 'single',
+		value = $bindable(),
 		...restProps
-	}: SelectProps = $props();
+	}: SelectPrimitive.RootProps = $props();
 </script>
 
-<SelectPrimitive.Root {type} bind:open bind:value={value as never} {...restProps} />
+<SelectPrimitive.Root bind:open bind:value={value as never} {...restProps} />

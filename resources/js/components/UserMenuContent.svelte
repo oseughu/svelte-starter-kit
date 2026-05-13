@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Link, router } from '@inertiajs/svelte';
-    import { LogOut, Settings } from 'lucide-svelte';
+    import { LogOut, Settings } from '@lucide/svelte';
     import {
         DropdownMenuGroup,
         DropdownMenuItem,
