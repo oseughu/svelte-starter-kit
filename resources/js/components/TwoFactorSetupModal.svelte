@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Form } from '@inertiajs/svelte';
-    import Check from 'lucide-svelte/icons/check';
-    import Copy from 'lucide-svelte/icons/copy';
-    import ScanLine from 'lucide-svelte/icons/scan-line';
+    import Check from '@lucide/svelte/icons/check';
+    import Copy from '@lucide/svelte/icons/copy';
+    import ScanLine from '@lucide/svelte/icons/scan-line';
     import { tick } from 'svelte';
     import AlertError from '@/components/AlertError.svelte';
     import InputError from '@/components/InputError.svelte';

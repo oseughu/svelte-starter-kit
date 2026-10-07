@@ -122,5 +122,7 @@
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
         "resources/js/**/*.svelte"
-    ]
+    ],
+    // Wayfinder's Method type lacks the QUERY verb Laravel registers for Route::redirect.
+    "exclude": ["resources/js/actions/Illuminate/**"]
 }

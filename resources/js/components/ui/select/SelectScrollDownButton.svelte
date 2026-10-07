@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDownIcon from 'lucide-svelte/icons/chevron-down';
+	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 	import { Select as SelectPrimitive } from 'bits-ui';
 	import { cn } from '@/lib/utils';
 	import type { ComponentProps } from 'svelte';

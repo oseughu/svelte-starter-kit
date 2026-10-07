@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
     import { getContext } from 'svelte';
-    import X from 'lucide-svelte/icons/x';
+    import X from '@lucide/svelte/icons/x';
     import { fly } from 'svelte/transition';
     import { cn } from '@/lib/utils';
     import { SHEET_CONTEXT, type SheetContext } from './context';
