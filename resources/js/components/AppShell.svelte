@@ -22,7 +22,7 @@
         {@render children?.()}
     </div>
 {:else}
-    <SidebarProvider defaultOpen={isOpen}>
+    <SidebarProvider open={isOpen}>
         {@render children?.()}
     </SidebarProvider>
 {/if}
