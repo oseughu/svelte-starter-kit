@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cn } from '@/lib/utils';
-    import Check from 'lucide-svelte/icons/check';
+    import Check from '@lucide/svelte/icons/check';
 
     let {
         checked = $bindable(false),
