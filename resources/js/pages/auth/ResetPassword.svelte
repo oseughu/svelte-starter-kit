@@ -19,9 +19,11 @@
     let {
         token,
         email,
+        passwordRules,
     }: {
         token: string;
         email: string;
+        passwordRules: string;
     } = $props();
 </script>
 
@@ -56,6 +58,7 @@
                     autocomplete="new-password"
                     class="mt-1 block w-full"
                     placeholder="Password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password} />
             </div>
@@ -68,6 +71,7 @@
                     autocomplete="new-password"
                     class="mt-1 block w-full"
                     placeholder="Confirm password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password_confirmation} />
             </div>

@@ -1,6 +1,6 @@
 <script module lang="ts">
     export const layout = {
-        title: 'Confirm your password',
+        title: 'Confirm password',
         description:
             'This is a secure area of the application. Please confirm your password before continuing.',
     };
@@ -15,9 +15,28 @@
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
     import { store } from '@/routes/password/confirm';
+    /* @chisel-passkeys */
+    import {
+        index as confirmOptions,
+        store as confirmStore,
+    } from '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyConfirmationController';
+    import PasskeyVerify from '@/components/PasskeyVerify.svelte';
+    /* @end-chisel-passkeys */
 </script>
 
 <AppHead title="Confirm password" />
+
+<!-- @chisel-passkeys -->
+<PasskeyVerify
+    routes={{
+        options: confirmOptions(),
+        submit: confirmStore(),
+    }}
+    label="Confirm with passkey"
+    loadingLabel="Confirming..."
+    separator="Or confirm with password"
+/>
+<!-- @end-chisel-passkeys -->
 
 <Form {...store.form()} resetOnSuccess>
     {#snippet children({ errors, processing })}

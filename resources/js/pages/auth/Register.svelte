@@ -17,6 +17,8 @@
     import { Spinner } from '@/components/ui/spinner';
     import { login } from '@/routes';
     import { store } from '@/routes/register';
+
+    let { passwordRules }: { passwordRules: string } = $props();
 </script>
 
 <AppHead title="Register" />
@@ -62,6 +64,7 @@
                     autocomplete="new-password"
                     name="password"
                     placeholder="Password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password} />
             </div>
@@ -74,6 +77,7 @@
                     autocomplete="new-password"
                     name="password_confirmation"
                     placeholder="Confirm password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password_confirmation} />
             </div>

@@ -16,18 +16,21 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
+    /* @chisel-registration */
     import { register } from '@/routes';
+    /* @end-chisel-registration */
     import { store } from '@/routes/login';
     import { request } from '@/routes/password';
+    /* @chisel-passkeys */
+    import PasskeyVerify from '@/components/PasskeyVerify.svelte';
+    /* @end-chisel-passkeys */
 
     let {
         status = '',
         canResetPassword,
-        canRegister,
     }: {
         status?: string;
         canResetPassword: boolean;
-        canRegister: boolean;
     } = $props();
 </script>
 
@@ -38,6 +41,10 @@
         {status}
     </div>
 {/if}
+
+<!-- @chisel-passkeys -->
+<PasskeyVerify />
+<!-- @end-chisel-passkeys -->
 
 <Form
     {...store.form()}
@@ -64,7 +71,7 @@
                     <Label for="password">Password</Label>
                     {#if canResetPassword}
                         <TextLink href={request()} class="text-sm">
-                            Forgot password?
+                            Forgot your password?
                         </TextLink>
                     {/if}
                 </div>
@@ -96,11 +103,11 @@
             </Button>
         </div>
 
-        {#if canRegister}
-            <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink href={register()}>Sign up</TextLink>
-            </div>
-        {/if}
+        <!-- @chisel-registration -->
+        <div class="text-center text-sm text-muted-foreground">
+            Don't have an account?
+            <TextLink href={register()}>Sign up</TextLink>
+        </div>
+        <!-- @end-chisel-registration -->
     {/snippet}
 </Form>
