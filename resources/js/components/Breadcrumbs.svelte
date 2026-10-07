@@ -24,8 +24,8 @@
                 {#if index === breadcrumbs.length - 1}
                     <BreadcrumbPage>{item.title}</BreadcrumbPage>
                 {:else}
-                    <BreadcrumbLink asChild>
-                        {#snippet children(props)}
+                    <BreadcrumbLink>
+                        {#snippet child({ props })}
                             <Link href={item.href} class={props.class}>
                                 {item.title}
                             </Link>
