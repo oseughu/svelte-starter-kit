@@ -15,6 +15,8 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
+
+    let { passwordRules }: { passwordRules: string } = $props();
 </script>
 
 <AppHead title="Register" />
@@ -61,6 +63,7 @@
                     autocomplete="new-password"
                     name="password"
                     placeholder="Password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password} />
             </div>
@@ -73,6 +76,7 @@
                     autocomplete="new-password"
                     name="password_confirmation"
                     placeholder="Confirm password"
+                    passwordrules={passwordRules}
                 />
                 <InputError message={errors.password_confirmation} />
             </div>

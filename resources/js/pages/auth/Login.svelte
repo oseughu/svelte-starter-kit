@@ -16,15 +16,16 @@
     import { Input } from '@/components/ui/input';
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
+    /* @chisel-passkeys */
+    import PasskeyVerify from '@/components/PasskeyVerify.svelte';
+    /* @end-chisel-passkeys */
 
     let {
         status = '',
         canResetPassword,
-        canRegister,
     }: {
         status?: string;
         canResetPassword: boolean;
-        canRegister: boolean;
     } = $props();
 </script>
 
@@ -35,6 +36,10 @@
         {status}
     </div>
 {/if}
+
+<!-- @chisel-passkeys -->
+<PasskeyVerify />
+<!-- @end-chisel-passkeys -->
 
 <Form
     method="post"
@@ -63,8 +68,10 @@
                     {#if canResetPassword}
                         <TextLink
                             href={route('password.request')}
-                            class="text-sm">Forgot password?</TextLink
+                            class="text-sm"
                         >
+                            Forgot your password?
+                        </TextLink>
                     {/if}
                 </div>
                 <PasswordInput
@@ -95,11 +102,11 @@
             </Button>
         </div>
 
-        {#if canRegister}
-            <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink href={route('register')}>Sign up</TextLink>
-            </div>
-        {/if}
+        <!-- @chisel-registration -->
+        <div class="text-center text-sm text-muted-foreground">
+            Don't have an account?
+            <TextLink href={route('register')}>Sign up</TextLink>
+        </div>
+        <!-- @end-chisel-registration -->
     {/snippet}
 </Form>

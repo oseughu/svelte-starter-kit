@@ -1,6 +1,6 @@
 <script module lang="ts">
     export const layout = {
-        title: 'Confirm your password',
+        title: 'Confirm password',
         description:
             'This is a secure area of the application. Please confirm your password before continuing.',
     };
@@ -14,9 +14,24 @@
     import { Button } from '@/components/ui/button';
     import { Label } from '@/components/ui/label';
     import { Spinner } from '@/components/ui/spinner';
+    /* @chisel-passkeys */
+    import PasskeyVerify from '@/components/PasskeyVerify.svelte';
+    /* @end-chisel-passkeys */
 </script>
 
 <AppHead title="Confirm password" />
+
+<!-- @chisel-passkeys -->
+<PasskeyVerify
+    routes={{
+        options: { url: route('passkey.confirm-options'), method: 'get' },
+        submit: { url: route('passkey.confirm'), method: 'post' },
+    }}
+    label="Confirm with passkey"
+    loadingLabel="Confirming..."
+    separator="Or confirm with password"
+/>
+<!-- @end-chisel-passkeys -->
 
 <Form method="post" action={route('password.confirm.store')} resetOnSuccess>
     {#snippet children({ errors, processing })}
